@@ -29,6 +29,65 @@ function generateStars(count: number) {
   return stars
 }
 
+const terminalCommands = [
+  'npm run dev',
+  'git status',
+  'ls -la',
+  'cat package.json',
+  'npm install',
+  'git commit -m "feat: update"',
+  'echo "Hello World"',
+  'cd src',
+  'pwd',
+  'git log --oneline',
+]
+
+function TerminalLine({
+  command,
+  delay,
+  index,
+}: {
+  command: string
+  delay: number
+  index: number
+}) {
+  const commandLength = command.length
+  const typingDuration = 0.5 + commandLength * 0.05
+
+  return (
+    <div
+      className="absolute left-4 sm:left-8 md:left-12 font-mono text-xs sm:text-sm"
+      style={{
+        top: `${8 + index * 4.5}%`,
+        animation: `terminal-fade-in ${0.5 + delay}s ease-out forwards`,
+        opacity: 0,
+      }}
+    >
+      <span className="text-[#00ff00]/40">user@portfolio</span>
+      <span className="text-[#00ff00]/60">:</span>
+      <span className="text-[#00ff00]/40">~</span>
+      <span className="text-[#00ff00]/60">$</span>{' '}
+      <span
+        className="inline-block text-[#00ff00]/80"
+        style={{
+          animation: `terminal-type ${typingDuration}s steps(${commandLength}) ${0.5 + delay}s forwards`,
+          width: 0,
+          overflow: 'hidden',
+          whiteSpace: 'nowrap',
+        }}
+      >
+        {command}
+      </span>
+      <span
+        className="inline-block w-2 h-4 bg-[#00ff00] ml-1 opacity-0"
+        style={{
+          animation: `terminal-blink 1s ${0.5 + delay + typingDuration}s infinite`,
+        }}
+      />
+    </div>
+  )
+}
+
 export default function AnimatedBackground() {
   const { theme } = useTheme()
   const [stars] = useState(() => generateStars(50))
@@ -76,16 +135,14 @@ export default function AnimatedBackground() {
               `,
             }}
           />
-          {/* Terminal prompt lines effect */}
-          <div className="absolute inset-0">
-            {Array.from({ length: 20 }).map((_, i) => (
-              <div
+          {/* Terminal command lines effect */}
+          <div className="absolute inset-0 overflow-hidden">
+            {terminalCommands.map((command, i) => (
+              <TerminalLine
                 key={i}
-                className="absolute left-4 right-4 h-px bg-[#00ff00]/5"
-                style={{
-                  top: `${5 + i * 5}%`,
-                  animation: `fade-in ${0.5 + i * 0.1}s ease-out`,
-                }}
+                command={command}
+                delay={i * 0.3}
+                index={i}
               />
             ))}
           </div>
