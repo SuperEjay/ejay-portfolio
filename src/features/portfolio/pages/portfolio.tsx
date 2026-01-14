@@ -1,3 +1,68 @@
+import { ExternalLink } from 'lucide-react'
+
+import projectsData from '../data/projects.json'
+
+interface ProjectCardProps {
+  title: string
+  type: string
+  description: string
+  date: string
+  link: string
+  image?: string
+}
+
+function ProjectCard({
+  title,
+  type,
+  description,
+  date,
+  link,
+  image,
+}: ProjectCardProps) {
+  return (
+    <div className="group bg-[#f5f5f5] dark:bg-[#252525] rounded-lg border border-[#e0e0e0] dark:border-[#3d3d3d] overflow-hidden hover:border-[#ef4444]/50 transition-all duration-300 animate-fade-in-up">
+      <a
+        href={link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block"
+      >
+        <div className="relative aspect-video bg-[#e0e0e0] dark:bg-[#3d3d3d] overflow-hidden">
+          {image ? (
+            <img
+              src={image}
+              alt={title}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center">
+              <div className="text-[#999999] dark:text-[#666666] text-sm">
+                {title}
+              </div>
+            </div>
+          )}
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+        </div>
+        <div className="p-4 sm:p-6">
+          <div className="flex items-start justify-between gap-2 mb-2">
+            <h3 className="text-[#333333] dark:text-white font-bold text-base sm:text-lg flex-1 group-hover:text-[#ef4444] transition-colors">
+              {title}
+            </h3>
+            <ExternalLink className="size-4 sm:size-5 text-[#666666] dark:text-[#a0a0a0] shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
+          </div>
+          <p className="text-[#ef4444] text-xs sm:text-sm font-medium mb-2">
+            {type}
+          </p>
+          <p className="text-[#666666] dark:text-[#a0a0a0] text-xs sm:text-sm leading-relaxed mb-3">
+            {description}
+          </p>
+          <p className="text-[#999999] dark:text-[#777777] text-xs">{date}</p>
+        </div>
+      </a>
+    </div>
+  )
+}
+
 export default function PortfolioPage() {
   return (
     <div
@@ -9,10 +74,18 @@ export default function PortfolioPage() {
           Portfolio
           <span className="absolute bottom-0 left-0 w-8 sm:w-12 h-1 bg-[#ef4444]" />
         </h2>
-        <div className="space-y-6">
-          <p className="text-[#555555] dark:text-white text-sm sm:text-base leading-relaxed">
-            Portfolio content coming soon...
-          </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          {projectsData.map((project, index) => (
+            <ProjectCard
+              key={index}
+              title={project.title}
+              type={project.type}
+              description={project.description}
+              date={project.date}
+              link={project.link}
+              image={project.image}
+            />
+          ))}
         </div>
       </section>
     </div>
