@@ -1,10 +1,10 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 
-type Theme = 'light' | 'dark'
+export type Theme = 'light' | 'dark' | 'terminal'
 
 interface ThemeContextType {
   theme: Theme
-  toggleTheme: () => void
+  setTheme: (theme: Theme) => void
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
@@ -14,23 +14,27 @@ function getInitialTheme(): Theme {
 
   try {
     const saved = localStorage.getItem('theme') as Theme
-    if (saved === 'light' || saved === 'dark') return saved
+    if (saved === 'light' || saved === 'dark' || saved === 'terminal')
+      return saved
   } catch {
     // localStorage not available
   }
 
-  if (window.matchMedia?.('(prefers-color-scheme: dark)').matches) {
-    return 'dark'
+  // Default based on time of day: AM (0-11) = light, PM (12-23) = dark
+  const currentHour = new Date().getHours()
+  if (currentHour >= 0 && currentHour < 12) {
+    return 'light' // Morning (AM) - light mode
+  } else {
+    return 'dark' // Afternoon/Evening (PM) - dark mode
   }
-  return 'light'
 }
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>('dark')
+  const [theme, setThemeState] = useState<Theme>('dark')
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    setTheme(getInitialTheme())
+    setThemeState(getInitialTheme())
     setMounted(true)
   }, [])
 
@@ -38,11 +42,13 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     if (!mounted) return
 
     const root = document.documentElement
+    root.classList.remove('light', 'dark', 'terminal')
+
     if (theme === 'dark') {
       root.classList.add('dark')
-      root.classList.remove('light')
+    } else if (theme === 'terminal') {
+      root.classList.add('terminal')
     } else {
-      root.classList.remove('dark')
       root.classList.add('light')
     }
 
@@ -53,12 +59,12 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     }
   }, [theme, mounted])
 
-  const toggleTheme = () => {
-    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'))
+  const setTheme = (newTheme: Theme) => {
+    setThemeState(newTheme)
   }
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme, setTheme }}>
       {children}
     </ThemeContext.Provider>
   )

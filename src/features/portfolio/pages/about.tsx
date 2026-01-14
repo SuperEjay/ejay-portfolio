@@ -20,14 +20,14 @@ function ServiceCard({ iconName, title, description }: ServiceCardProps) {
   const IconComponent = iconMap[iconName] || Globe
 
   return (
-    <div className="bg-[#f5f5f5] dark:bg-[#252525] rounded-lg border border-[#e0e0e0] dark:border-[#3d3d3d] p-6 hover:border-[#ef4444]/50 transition-colors animate-fade-in-up">
-      <div className="text-[#ef4444] mb-4">
+    <div className="bg-[#f5f5f5] dark:bg-[#252525] terminal:bg-[#0a0a0a] rounded-lg border border-[#e0e0e0] dark:border-[#3d3d3d] terminal:border-[#00ff00]/30 p-6 hover:border-[#ef4444]/50 terminal:hover:border-[#00ff00]/50 transition-colors animate-fade-in-up">
+      <div className="text-[#ef4444] terminal:text-[#00ff00] mb-4">
         <IconComponent className="size-6 sm:size-8" />
       </div>
-      <h3 className="text-[#333333] dark:text-white font-bold text-lg mb-2">
+      <h3 className="text-[#333333] dark:text-white terminal:text-[#00ff00] font-bold text-lg mb-2">
         {title}
       </h3>
-      <p className="text-[#666666] dark:text-[#a0a0a0] text-sm">
+      <p className="text-[#666666] dark:text-[#a0a0a0] terminal:text-[#00ff00]/80 text-sm">
         {description}
       </p>
     </div>
@@ -42,9 +42,9 @@ interface TestimonialCardProps {
 
 function TestimonialCard({ name, message, image }: TestimonialCardProps) {
   return (
-    <div className="bg-[#f5f5f5] dark:bg-[#252525] rounded-lg border border-[#e0e0e0] dark:border-[#3d3d3d] p-6 animate-fade-in-up">
+    <div className="bg-[#f5f5f5] dark:bg-[#252525] terminal:bg-[#0a0a0a] rounded-lg border border-[#e0e0e0] dark:border-[#3d3d3d] terminal:border-[#00ff00]/30 p-6 animate-fade-in-up">
       <div className="flex items-start gap-4">
-        <div className="w-12 h-12 rounded-full bg-[#e0e0e0] dark:bg-[#3d3d3d] flex items-center justify-center shrink-0 overflow-hidden">
+        <div className="w-12 h-12 rounded-full bg-[#e0e0e0] dark:bg-[#3d3d3d] terminal:bg-[#1a1a1a] border terminal:border-[#00ff00]/30 flex items-center justify-center shrink-0 overflow-hidden">
           {image ? (
             <img
               src={image}
@@ -52,16 +52,16 @@ function TestimonialCard({ name, message, image }: TestimonialCardProps) {
               className="w-full h-full rounded-full object-cover"
             />
           ) : (
-            <span className="text-[#333333] dark:text-white text-xl">
+            <span className="text-[#333333] dark:text-white terminal:text-[#00ff00] text-xl">
               {name.charAt(0)}
             </span>
           )}
         </div>
         <div className="flex-1">
-          <h4 className="text-[#333333] dark:text-white font-bold mb-2">
+          <h4 className="text-[#333333] dark:text-white terminal:text-[#00ff00] font-bold mb-2">
             {name}
           </h4>
-          <p className="text-[#666666] dark:text-[#a0a0a0] text-sm">
+          <p className="text-[#666666] dark:text-[#a0a0a0] terminal:text-[#00ff00]/80 text-sm">
             {message}
           </p>
         </div>
@@ -78,15 +78,15 @@ export default function AboutPage() {
     >
       {/* About Me Section */}
       <section className="mb-8 sm:mb-12 animate-slide-in-left">
-        <h2 className="text-[#333333] dark:text-white text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 relative inline-block">
+        <h2 className="text-[#333333] dark:text-white terminal:text-[#00ff00] text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 relative inline-block">
           About Me
-          <span className="absolute bottom-0 left-0 w-8 sm:w-12 h-1 bg-[#ef4444]" />
+          <span className="absolute bottom-0 left-0 w-8 sm:w-12 h-1 bg-[#ef4444] terminal:bg-[#00ff00]" />
         </h2>
         <div className="mt-4 sm:mt-6 space-y-3 sm:space-y-4">
           {aboutData.aboutMe.paragraphs.map((paragraph, index) => (
             <p
               key={index}
-              className="text-[#555555] dark:text-white text-sm sm:text-base leading-relaxed"
+              className="text-[#555555] dark:text-white terminal:text-[#00ff00]/90 text-sm sm:text-base leading-relaxed"
             >
               {paragraph}
             </p>
@@ -96,7 +96,7 @@ export default function AboutPage() {
 
       {/* What I'm Doing Section */}
       <section className="mb-8 sm:mb-12 animate-slide-in-right">
-        <h2 className="text-[#333333] dark:text-white text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8">
+        <h2 className="text-[#333333] dark:text-white terminal:text-[#00ff00] text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8">
           {aboutData.whatImDoing.title}
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
@@ -113,7 +113,7 @@ export default function AboutPage() {
 
       {/* Testimonials Section */}
       <section className="animate-slide-in-left">
-        <h2 className="text-[#333333] dark:text-white text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8">
+        <h2 className="text-[#333333] dark:text-white terminal:text-[#00ff00] text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8">
           {testimonialsData.title}
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">

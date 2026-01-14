@@ -47,20 +47,61 @@ export default function AnimatedBackground() {
   }, [theme, prevTheme])
 
   const isDark = theme === 'dark'
+  const isTerminal = theme === 'terminal'
 
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
-      {/* Sky gradient */}
-      <div
-        className={`absolute inset-0 transition-all duration-1500 ${
-          isDark
-            ? 'bg-gradient-to-b from-[#0a0a1a] via-[#1a1a3a] to-[#121212]'
-            : 'bg-gradient-to-b from-[#87CEEB] via-[#E0F6FF] to-[#f0f0f0]'
-        }`}
-      />
+      {/* Sky gradient / Terminal background */}
+      {isTerminal ? (
+        <div className="absolute inset-0 bg-[#0a0a0a]">
+          {/* Terminal code-like pattern */}
+          <div
+            className="absolute inset-0 opacity-10"
+            style={{
+              backgroundImage: `
+                repeating-linear-gradient(
+                  0deg,
+                  transparent,
+                  transparent 2px,
+                  rgba(0, 255, 0, 0.03) 2px,
+                  rgba(0, 255, 0, 0.03) 4px
+                ),
+                repeating-linear-gradient(
+                  90deg,
+                  transparent,
+                  transparent 2px,
+                  rgba(0, 255, 0, 0.03) 2px,
+                  rgba(0, 255, 0, 0.03) 4px
+                )
+              `,
+            }}
+          />
+          {/* Terminal prompt lines effect */}
+          <div className="absolute inset-0">
+            {Array.from({ length: 20 }).map((_, i) => (
+              <div
+                key={i}
+                className="absolute left-4 right-4 h-px bg-[#00ff00]/5"
+                style={{
+                  top: `${5 + i * 5}%`,
+                  animation: `fade-in ${0.5 + i * 0.1}s ease-out`,
+                }}
+              />
+            ))}
+          </div>
+        </div>
+      ) : (
+        <div
+          className={`absolute inset-0 transition-all duration-1500 ${
+            isDark
+              ? 'bg-gradient-to-b from-[#0a0a1a] via-[#1a1a3a] to-[#121212]'
+              : 'bg-gradient-to-b from-[#87CEEB] via-[#E0F6FF] to-[#f0f0f0]'
+          }`}
+        />
+      )}
 
-      {/* Sunrise/Sunset glow */}
-      {isTransitioning && (
+      {/* Sunrise/Sunset glow - hidden for terminal */}
+      {!isTerminal && isTransitioning && (
         <div
           className={`absolute bottom-0 left-0 right-0 h-[40%] ${
             isDark ? 'animate-sunset' : 'animate-sunrise'
@@ -76,53 +117,59 @@ export default function AnimatedBackground() {
         </div>
       )}
 
-      {/* Sun/Moon */}
-      <div
-        className={`absolute transition-all duration-1500 ease-in-out ${
-          isDark
-            ? 'bottom-[-100px] right-[15%] opacity-0'
-            : 'bottom-[20%] right-[15%] opacity-100'
-        }`}
-      >
+      {/* Sun/Moon - hidden for terminal */}
+      {!isTerminal && (
         <div
-          className={`w-20 h-20 rounded-full transition-all duration-1500 ${
+          className={`absolute transition-all duration-1500 ease-in-out ${
             isDark
-              ? 'bg-gradient-to-br from-[#ffd700] to-[#ff6b35] shadow-[0_0_60px_rgba(255,107,53,0.8)]'
-              : 'bg-gradient-to-br from-[#fff5cc] to-[#ffdd00] shadow-[0_0_80px_rgba(255,221,0,0.6)]'
+              ? 'bottom-[-100px] right-[15%] opacity-0'
+              : 'bottom-[20%] right-[15%] opacity-100'
           }`}
-        />
-      </div>
-
-      {/* Moon for dark mode */}
-      <div
-        className={`absolute transition-all duration-1500 ease-in-out ${
-          isDark
-            ? 'top-[10%] right-[20%] opacity-100'
-            : 'top-[-100px] right-[20%] opacity-0'
-        }`}
-      >
-        <div className="relative w-16 h-16">
-          <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#f5f5f5] to-[#d0d0d0] shadow-[0_0_40px_rgba(255,255,255,0.3)]" />
-          {/* Moon craters */}
-          <div className="absolute top-3 left-4 w-3 h-3 rounded-full bg-[#c0c0c0]/50" />
-          <div className="absolute top-7 left-8 w-2 h-2 rounded-full bg-[#c0c0c0]/40" />
-          <div className="absolute top-5 left-2 w-2 h-2 rounded-full bg-[#c0c0c0]/30" />
+        >
+          <div
+            className={`w-20 h-20 rounded-full transition-all duration-1500 ${
+              isDark
+                ? 'bg-gradient-to-br from-[#ffd700] to-[#ff6b35] shadow-[0_0_60px_rgba(255,107,53,0.8)]'
+                : 'bg-gradient-to-br from-[#fff5cc] to-[#ffdd00] shadow-[0_0_80px_rgba(255,221,0,0.6)]'
+            }`}
+          />
         </div>
-      </div>
+      )}
 
-      {/* Stars */}
-      <div
-        className={`absolute inset-0 transition-opacity duration-1500 ${
-          isDark ? 'opacity-100' : 'opacity-0'
-        }`}
-      >
-        {stars.map((star) => (
-          <Star key={star.id} style={star.style} />
-        ))}
-      </div>
+      {/* Moon for dark mode - hidden for terminal */}
+      {!isTerminal && (
+        <div
+          className={`absolute transition-all duration-1500 ease-in-out ${
+            isDark
+              ? 'top-[10%] right-[20%] opacity-100'
+              : 'top-[-100px] right-[20%] opacity-0'
+          }`}
+        >
+          <div className="relative w-16 h-16">
+            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#f5f5f5] to-[#d0d0d0] shadow-[0_0_40px_rgba(255,255,255,0.3)]" />
+            {/* Moon craters */}
+            <div className="absolute top-3 left-4 w-3 h-3 rounded-full bg-[#c0c0c0]/50" />
+            <div className="absolute top-7 left-8 w-2 h-2 rounded-full bg-[#c0c0c0]/40" />
+            <div className="absolute top-5 left-2 w-2 h-2 rounded-full bg-[#c0c0c0]/30" />
+          </div>
+        </div>
+      )}
 
-      {/* Shooting star (only in dark mode) */}
-      {isDark && (
+      {/* Stars - hidden for terminal */}
+      {!isTerminal && (
+        <div
+          className={`absolute inset-0 transition-opacity duration-1500 ${
+            isDark ? 'opacity-100' : 'opacity-0'
+          }`}
+        >
+          {stars.map((star) => (
+            <Star key={star.id} style={star.style} />
+          ))}
+        </div>
+      )}
+
+      {/* Shooting star (only in dark mode) - hidden for terminal */}
+      {!isTerminal && isDark && (
         <div className="absolute top-[20%] left-[10%] animate-shooting-star">
           <div className="w-1 h-1 bg-white rounded-full shadow-[0_0_6px_2px_rgba(255,255,255,0.8)]">
             <div className="absolute w-20 h-[1px] bg-gradient-to-r from-white/80 to-transparent -translate-x-full" />
@@ -130,27 +177,29 @@ export default function AnimatedBackground() {
         </div>
       )}
 
-      {/* Clouds for light mode */}
-      <div
-        className={`absolute transition-opacity duration-1500 ${
-          isDark ? 'opacity-0' : 'opacity-100'
-        }`}
-      >
-        <div className="absolute top-[15%] left-[10%] animate-float-slow">
-          <div className="flex">
-            <div className="w-16 h-8 bg-white/80 rounded-full blur-sm" />
-            <div className="w-12 h-10 bg-white/80 rounded-full blur-sm -ml-6 -mt-2" />
-            <div className="w-14 h-8 bg-white/80 rounded-full blur-sm -ml-4" />
+      {/* Clouds for light mode - hidden for terminal */}
+      {!isTerminal && (
+        <div
+          className={`absolute transition-opacity duration-1500 ${
+            isDark ? 'opacity-0' : 'opacity-100'
+          }`}
+        >
+          <div className="absolute top-[15%] left-[10%] animate-float-slow">
+            <div className="flex">
+              <div className="w-16 h-8 bg-white/80 rounded-full blur-sm" />
+              <div className="w-12 h-10 bg-white/80 rounded-full blur-sm -ml-6 -mt-2" />
+              <div className="w-14 h-8 bg-white/80 rounded-full blur-sm -ml-4" />
+            </div>
+          </div>
+          <div className="absolute top-[25%] right-[25%] animate-float-slower">
+            <div className="flex">
+              <div className="w-12 h-6 bg-white/70 rounded-full blur-sm" />
+              <div className="w-10 h-8 bg-white/70 rounded-full blur-sm -ml-4 -mt-2" />
+              <div className="w-10 h-6 bg-white/70 rounded-full blur-sm -ml-3" />
+            </div>
           </div>
         </div>
-        <div className="absolute top-[25%] right-[25%] animate-float-slower">
-          <div className="flex">
-            <div className="w-12 h-6 bg-white/70 rounded-full blur-sm" />
-            <div className="w-10 h-8 bg-white/70 rounded-full blur-sm -ml-4 -mt-2" />
-            <div className="w-10 h-6 bg-white/70 rounded-full blur-sm -ml-3" />
-          </div>
-        </div>
-      </div>
+      )}
     </div>
   )
 }

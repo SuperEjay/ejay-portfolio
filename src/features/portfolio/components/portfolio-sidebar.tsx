@@ -24,15 +24,15 @@ interface ContactItemProps {
 function ContactItem({ icon, label, value, href }: ContactItemProps) {
   const content = (
     <div className="flex items-start gap-3 w-full group">
-      <div className="p-2 rounded-lg border border-[#ef4444] text-[#ef4444] shrink-0 bg-[#ef4444]/10 group-hover:border-[#ef4444] group-hover:text-[#ef4444] group-hover:bg-[#ef4444]/20 transition-colors">
+      <div className="p-2 rounded-lg border border-[#ef4444] terminal:border-[#00ff00] text-[#ef4444] terminal:text-[#00ff00] shrink-0 bg-[#ef4444]/10 terminal:bg-[#00ff00]/10 group-hover:border-[#ef4444] terminal:group-hover:border-[#00ff00] group-hover:text-[#ef4444] terminal:group-hover:text-[#00ff00] group-hover:bg-[#ef4444]/20 terminal:group-hover:bg-[#00ff00]/20 transition-colors">
         {icon}
       </div>
       <div className="flex flex-col gap-0.5 min-w-0 flex-1">
-        <span className="text-[#666666] dark:text-[#a0a0a0] group-hover:text-[#ef4444] text-xs uppercase tracking-wide font-medium transition-colors">
+        <span className="text-[#666666] dark:text-[#a0a0a0] terminal:text-[#00ff00]/80 group-hover:text-[#ef4444] terminal:group-hover:text-[#00ff00] text-xs uppercase tracking-wide font-medium transition-colors">
           {label}
         </span>
         <span
-          className="text-[#333333] dark:text-white text-xs sm:text-sm truncate"
+          className="text-[#333333] dark:text-white terminal:text-[#00ff00] text-xs sm:text-sm truncate"
           title={value}
         >
           {value}
@@ -62,7 +62,7 @@ export default function PortfolioSidebar() {
 
   return (
     <div
-      className="flex flex-col gap-4 sm:gap-6 px-4 sm:px-6 py-6 sm:py-10 bg-white dark:bg-[#252525] rounded-lg border border-[#e0e0e0] dark:border-[#3d3d3d] shadow-lg h-fit animate-fade-in-up transition-colors"
+      className="flex flex-col gap-4 sm:gap-6 px-4 sm:px-6 py-6 sm:py-10 bg-white dark:bg-[#252525] terminal:bg-[#0a0a0a] rounded-lg border border-[#e0e0e0] dark:border-[#3d3d3d] terminal:border-[#00ff00]/30 shadow-lg h-fit animate-fade-in-up transition-colors"
       style={{ fontFamily: "'Poppins', sans-serif" }}
     >
       {/* Profile Section - Always visible */}
@@ -82,12 +82,12 @@ export default function PortfolioSidebar() {
             </AspectRatio>
           </div>
           <div className="flex flex-col gap-2 lg:items-center flex-1">
-            <p className="text-[#333333] dark:text-white font-bold text-base sm:text-lg lg:text-[18px] lg:text-center">
+            <p className="text-[#333333] dark:text-white terminal:text-[#00ff00] font-bold text-base sm:text-lg lg:text-[18px] lg:text-center">
               Earnest John Gungon
             </p>
             <Badge
               variant="outline"
-              className="border-[#d0d0d0] dark:border-[#4a4a4a] text-[#666666] dark:text-[#a0a0a0] bg-transparent font-normal w-fit"
+              className="border-[#d0d0d0] dark:border-[#4a4a4a] terminal:border-[#00ff00]/50 text-[#666666] dark:text-[#a0a0a0] terminal:text-[#00ff00]/80 bg-transparent font-normal w-fit"
             >
               Software Engineer
             </Badge>
@@ -101,7 +101,7 @@ export default function PortfolioSidebar() {
         {/* Show Contacts Button - Mobile only */}
         <button
           onClick={() => setIsExpanded(!isExpanded)}
-          className="flex lg:hidden items-center gap-2 text-[#ef4444] text-sm font-medium mt-2"
+          className="flex lg:hidden items-center gap-2 text-[#ef4444] terminal:text-[#00ff00] text-sm font-medium mt-2"
         >
           Show Contacts
           <ChevronDown
@@ -118,7 +118,7 @@ export default function PortfolioSidebar() {
             : 'max-h-0 lg:max-h-none opacity-0 lg:opacity-100'
         }`}
       >
-        <div className="w-full h-px bg-[#e0e0e0] dark:bg-[#3d3d3d]" />
+        <div className="w-full h-px bg-[#e0e0e0] dark:bg-[#3d3d3d] terminal:bg-[#00ff00]/30" />
 
         {/* Contact items - 2 columns on tablet, 1 column on mobile/desktop */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3 sm:gap-4 px-0 sm:px-2">
@@ -151,7 +151,7 @@ export default function PortfolioSidebar() {
             href="https://www.facebook.com/ejohngungon"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[#666666] dark:text-[#a0a0a0] hover:text-[#ef4444] transition-colors"
+            className="flex items-center justify-center w-10 h-10 rounded-full border border-[#e0e0e0] dark:border-[#3d3d3d] terminal:border-[#00ff00]/30 text-[#666666] dark:text-[#a0a0a0] terminal:text-[#00ff00]/80 hover:bg-[#ef4444] terminal:hover:bg-[#00ff00] hover:text-white terminal:hover:text-[#0a0a0a] hover:border-[#ef4444] terminal:hover:border-[#00ff00] transition-all duration-300"
             aria-label="Facebook"
           >
             <Facebook className="size-5" />
@@ -160,7 +160,7 @@ export default function PortfolioSidebar() {
             href="https://www.linkedin.com/in/superejay/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[#666666] dark:text-[#a0a0a0] hover:text-[#ef4444] transition-colors"
+            className="flex items-center justify-center w-10 h-10 rounded-full border border-[#e0e0e0] dark:border-[#3d3d3d] terminal:border-[#00ff00]/30 text-[#666666] dark:text-[#a0a0a0] terminal:text-[#00ff00]/80 hover:bg-[#ef4444] terminal:hover:bg-[#00ff00] hover:text-white terminal:hover:text-[#0a0a0a] hover:border-[#ef4444] terminal:hover:border-[#00ff00] transition-all duration-300"
             aria-label="LinkedIn"
           >
             <Linkedin className="size-5" />
@@ -169,7 +169,7 @@ export default function PortfolioSidebar() {
             href="https://github.com/SuperEjay"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[#666666] dark:text-[#a0a0a0] hover:text-[#ef4444] transition-colors"
+            className="flex items-center justify-center w-10 h-10 rounded-full border border-[#e0e0e0] dark:border-[#3d3d3d] terminal:border-[#00ff00]/30 text-[#666666] dark:text-[#a0a0a0] terminal:text-[#00ff00]/80 hover:bg-[#ef4444] terminal:hover:bg-[#00ff00] hover:text-white terminal:hover:text-[#0a0a0a] hover:border-[#ef4444] terminal:hover:border-[#00ff00] transition-all duration-300"
             aria-label="GitHub"
           >
             <Github className="size-5" />
