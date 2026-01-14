@@ -13,7 +13,7 @@ export default function PortfolioNav() {
 
   return (
     <div className="flex justify-end animate-fade-in-down">
-      <nav className="flex items-center gap-6 bg-[#f5f5f5] dark:bg-[#252525] rounded-full px-6 py-3 border border-[#e0e0e0] dark:border-[#3d3d3d] transition-colors">
+      <nav className="flex items-center gap-8 bg-[#f5f5f5] dark:bg-[#252525] rounded-full px-8 py-4 border border-[#e0e0e0] dark:border-transparent shadow-lg transition-colors">
         {navItems.map((item) => {
           const isActive = location.pathname === item.href
           return (
@@ -23,7 +23,7 @@ export default function PortfolioNav() {
               className={`relative font-medium transition-colors pb-1 group ${
                 isActive
                   ? 'text-[#ef4444]'
-                  : 'text-[#666666] dark:text-[#a0a0a0] hover:text-[#ef4444]'
+                  : 'text-[#666666] dark:text-white/80 hover:text-[#ef4444]'
               }`}
             >
               {item.label}
