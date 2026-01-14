@@ -54,12 +54,12 @@ function ContactItem({ icon, label, value, href }: ContactItemProps) {
 export default function PortfolioSidebar() {
   return (
     <div
-      className="flex flex-col gap-6 px-4 py-10 bg-[#252525] rounded-lg border border-[#3d3d3d] shadow-lg"
+      className="flex flex-col gap-6 px-4 py-10 bg-[#252525] rounded-lg border border-[#3d3d3d] shadow-lg h-fit"
       style={{ fontFamily: "'Poppins', sans-serif" }}
     >
       {/* Profile Section */}
       <div className="flex flex-col gap-[25px] w-full items-center">
-        <div className="w-[150px]">
+        <div className="w-[200px]">
           <AspectRatio
             ratio={1}
             className="bg-muted rounded-lg overflow-hidden"
