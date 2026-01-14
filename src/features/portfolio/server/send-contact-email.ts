@@ -1,4 +1,4 @@
-import nodemailer from 'nodemailer'
+import { google } from 'googleapis'
 import { createServerFn } from '@tanstack/react-start'
 
 export type ContactFormInput = {
@@ -15,6 +15,62 @@ function isNonEmptyString(v: unknown): v is string {
 function sanitizeHeaderValue(v: string) {
   // prevent header injection (CRLF)
   return v.replace(/(\r|\n)/g, ' ').trim()
+}
+
+function createGmailClient() {
+  // Get OAuth2 credentials from environment variables
+  const clientId = process.env.GMAIL_CLIENT_ID
+  const clientSecret = process.env.GMAIL_CLIENT_SECRET
+  const refreshToken = process.env.GMAIL_REFRESH_TOKEN
+  const fromEmail = process.env.GMAIL_FROM_EMAIL ?? 'earnest0987@gmail.com'
+
+  if (!clientId || !clientSecret || !refreshToken) {
+    throw new Error(
+      'Gmail API credentials not configured. Please set GMAIL_CLIENT_ID, GMAIL_CLIENT_SECRET, and GMAIL_REFRESH_TOKEN environment variables.',
+    )
+  }
+
+  const oauth2Client = new google.auth.OAuth2(
+    clientId,
+    clientSecret,
+    'urn:ietf:wg:oauth:2.0:oob', // Redirect URI for installed apps
+  )
+
+  oauth2Client.setCredentials({
+    refresh_token: refreshToken,
+  })
+
+  return {
+    gmail: google.gmail({ version: 'v1', auth: oauth2Client }),
+    fromEmail,
+  }
+}
+
+function encodeMessage(
+  to: string,
+  from: string,
+  subject: string,
+  text: string,
+  replyTo?: string,
+) {
+  const message = [
+    `To: ${to}`,
+    `From: ${from}`,
+    `Subject: ${subject}`,
+    replyTo ? `Reply-To: ${replyTo}` : '',
+    'Content-Type: text/plain; charset=utf-8',
+    '',
+    text,
+  ]
+    .filter(Boolean)
+    .join('\n')
+
+  // Encode message in base64url format (Gmail API requirement)
+  return Buffer.from(message)
+    .toString('base64')
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_')
+    .replace(/=+$/, '')
 }
 
 export const sendContactEmail = createServerFn({ method: 'POST' })
@@ -39,28 +95,12 @@ export const sendContactEmail = createServerFn({ method: 'POST' })
   })
   .handler(async ({ data }) => {
     const to = process.env.CONTACT_TO_EMAIL ?? 'earnest0987@gmail.com'
-    const from = process.env.CONTACT_FROM_EMAIL ?? to
+    const { gmail, fromEmail } = createGmailClient()
 
     const subject = sanitizeHeaderValue(
       data.subject ?? `Inquiry - ${data.fullName}`,
     )
 
-    // Expect either SMTP URL or explicit SMTP config env vars
-    // SMTP_URL example: smtp://user:pass@smtp.gmail.com:587
-    const transporter = nodemailer.createTransport(
-      process.env.SMTP_URL
-        ? process.env.SMTP_URL
-        : {
-            host: process.env.SMTP_HOST,
-            port: process.env.SMTP_PORT ? Number(process.env.SMTP_PORT) : 587,
-            secure: process.env.SMTP_SECURE === 'true',
-            auth: process.env.SMTP_USER
-              ? { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS }
-              : undefined,
-          },
-    )
-
-    // If transporter isn't configured, nodemailer will fail here; surface a clean error.
     const replyTo = sanitizeHeaderValue(data.email)
     const fullName = sanitizeHeaderValue(data.fullName)
 
@@ -75,12 +115,13 @@ export const sendContactEmail = createServerFn({ method: 'POST' })
       ``,
     ].join('\n')
 
-    await transporter.sendMail({
-      to,
-      from,
-      subject,
-      replyTo,
-      text,
+    const rawMessage = encodeMessage(to, fromEmail, subject, text, replyTo)
+
+    await gmail.users.messages.send({
+      userId: 'me',
+      requestBody: {
+        raw: rawMessage,
+      },
     })
 
     return { ok: true as const }
