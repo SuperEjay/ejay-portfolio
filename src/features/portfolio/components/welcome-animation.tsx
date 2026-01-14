@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react'
 
 import AnimatedBackground from '@/components/animated-background'
+import { useTheme } from '@/contexts/theme-context'
 
 interface WelcomeAnimationProps {
   onComplete: () => void
 }
 
 export default function WelcomeAnimation({ onComplete }: WelcomeAnimationProps) {
+  const { theme } = useTheme()
+  const isTerminal = theme === 'terminal'
   const [isExiting, setIsExiting] = useState(false)
   const [showLine1, setShowLine1] = useState(false)
   const [showLine2, setShowLine2] = useState(false)
@@ -58,8 +61,14 @@ export default function WelcomeAnimation({ onComplete }: WelcomeAnimationProps) 
       {/* Use the same animated background as the main app */}
       <AnimatedBackground />
       
-      {/* Overlay to ensure content is readable */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#87CEEB]/80 via-[#E0F6FF]/80 to-[#f0f0f0]/80 dark:from-[#0a0a1a]/80 dark:via-[#1a1a3a]/80 dark:to-[#121212]/80 terminal:bg-[#0a0a0a]/80 backdrop-blur-sm" />
+      {/* Overlay to ensure content is readable - darker for terminal theme */}
+      <div
+        className={`absolute inset-0 backdrop-blur-sm transition-colors ${
+          isTerminal
+            ? 'bg-[#0a0a0a]/95'
+            : 'bg-gradient-to-b from-[#87CEEB]/80 via-[#E0F6FF]/80 to-[#f0f0f0]/80 dark:from-[#0a0a1a]/80 dark:via-[#1a1a3a]/80 dark:to-[#121212]/80'
+        }`}
+      />
       
       <div className="relative z-10 flex flex-col items-center justify-center gap-4 sm:gap-6">
         {/* Line 1: "Hello, I'm Earnest John" */}
@@ -71,10 +80,22 @@ export default function WelcomeAnimation({ onComplete }: WelcomeAnimationProps) 
           }`}
         >
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-center">
-            <span className="text-[#1a1a1a] dark:text-white terminal:text-[#00ff00]">
+            <span
+              className={
+                isTerminal
+                  ? 'text-[#00ff00]'
+                  : 'text-[#1a1a1a] dark:text-white'
+              }
+            >
               Hello, I'm{' '}
             </span>
-            <span className="text-[#ef4444] terminal:text-[#00ff00]">
+            <span
+              className={
+                isTerminal
+                  ? 'text-[#00ff00]'
+                  : 'text-[#ef4444]'
+              }
+            >
               Earnest John
             </span>
           </h1>
@@ -88,7 +109,13 @@ export default function WelcomeAnimation({ onComplete }: WelcomeAnimationProps) 
               : 'opacity-0 translate-y-8'
           }`}
         >
-          <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#666666] dark:text-[#a0a0a0] terminal:text-[#00ff00]/80 font-medium">
+          <p
+            className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-medium ${
+              isTerminal
+                ? 'text-[#00ff00]/90'
+                : 'text-[#666666] dark:text-[#a0a0a0]'
+            }`}
+          >
             Full-Stack Web Developer
           </p>
         </div>
@@ -101,7 +128,13 @@ export default function WelcomeAnimation({ onComplete }: WelcomeAnimationProps) 
               : 'opacity-0 translate-y-8'
           }`}
         >
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-[#888888] dark:text-[#aaaaaa] terminal:text-[#00ff00]/70 font-normal">
+          <p
+            className={`text-sm sm:text-base md:text-lg lg:text-xl font-normal ${
+              isTerminal
+                ? 'text-[#00ff00]/80'
+                : 'text-[#888888] dark:text-[#aaaaaa]'
+            }`}
+          >
             Turning ideas into web solutions
           </p>
         </div>

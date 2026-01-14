@@ -2,14 +2,19 @@
   "title": "Testimonials",
   "items": [
     {
-      "name": "Daniel Lewis",
-      "image": "/assets/images/testimonials/daniel-lewis.jpg",
-      "message": "Earnest was hired to create a corporate identity. We were very pleased with the work done. He has a lot of experience and is very concerned about the needs of client."
+      "name": "Michael Sabino",
+      "image": "/assets/images/testimonials/michael.jpeg",
+      "message": "Sir Ejay was my first senior developer and tech lead, and he greatly shaped my growth as a developer. He freely shared his knowledge, encouraged learning new technologies as a team, and pushed us to apply them in real work. A strong problem solver and clear thinker, he creates a supportive, non-intimidating environment that motivates everyone to perform at their best."
     },
     {
-      "name": "Jessica Miller",
-      "image": "/assets/images/testimonials/jessica-miller.jpg",
-      "message": "Earnest was hired to create a corporate identity. We were very pleased with the work done. He has a lot of experience and is very concerned about the needs of client."
+      "name": "Cedrick Dela Carcel",
+      "image": "https://via.placeholder.com/150x150",
+      "message": "Mr. Earnest played a big role in my growth as a developer. He guided me in exploring new technologies and approaching problems with a clearer, more effective mindset. Beyond technical skills, he also helped me strengthen my communication, discipline, and resilience—skills that matter both in real development work and real-life challenges."
+    },
+    {
+      "name": "Mike Joseph Salvio",
+      "image": "/assets/images/testimonials/mj.jpg",
+      "message": "EJ is a highly dependable Senior Software Lead Developer with over five years of experience in the tech industry. He consistently delivers quality results under pressure and is known for his patience, willingness to mentor others, and commitment to sharing knowledge. A kind, reliable leader who elevates the teams he works with."
     }
   ]
 }
