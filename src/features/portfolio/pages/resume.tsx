@@ -1,3 +1,9 @@
+import {
+  ActivitiesSection,
+  EducationSection,
+  ExperienceSection,
+} from '../components/resume'
+
 export default function ResumePage() {
   return (
     <div
@@ -9,11 +15,10 @@ export default function ResumePage() {
           Resume
           <span className="absolute bottom-0 left-0 w-8 sm:w-12 h-1 bg-[#ef4444]" />
         </h2>
-        <div className="space-y-6">
-          <p className="text-[#555555] dark:text-white text-sm sm:text-base leading-relaxed">
-            Resume content coming soon...
-          </p>
-        </div>
+
+        <EducationSection />
+        <ExperienceSection />
+        <ActivitiesSection />
       </section>
     </div>
   )
