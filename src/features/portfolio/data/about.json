@@ -31,18 +31,5 @@
         "description": "I turn ideas into functional products—prototypes, internal tools, or community-driven apps—always prioritizing clarity, impact, and maintainability."
       }
     ]
-  },
-  "testimonials": {
-    "title": "Testimonials",
-    "items": [
-      {
-        "name": "Daniel Lewis",
-        "text": "Earnest was hired to create a corporate identity. We were very pleased with the work done. He has a lot of experience and is very concerned about the needs of client."
-      },
-      {
-        "name": "Jessica Miller",
-        "text": "Earnest was hired to create a corporate identity. We were very pleased with the work done. He has a lot of experience and is very concerned about the needs of client."
-      }
-    ]
   }
 }

@@ -1,0 +1,15 @@
+{
+  "title": "Testimonials",
+  "items": [
+    {
+      "name": "Daniel Lewis",
+      "image": "/assets/images/testimonials/daniel-lewis.jpg",
+      "message": "Earnest was hired to create a corporate identity. We were very pleased with the work done. He has a lot of experience and is very concerned about the needs of client."
+    },
+    {
+      "name": "Jessica Miller",
+      "image": "/assets/images/testimonials/jessica-miller.jpg",
+      "message": "Earnest was hired to create a corporate identity. We were very pleased with the work done. He has a lot of experience and is very concerned about the needs of client."
+    }
+  ]
+}

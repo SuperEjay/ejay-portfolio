@@ -1,11 +1,7 @@
-import {
-  Globe,
-  Layout,
-  Rocket,
-  Server,
-} from 'lucide-react'
+import { Globe, Layout, Rocket, Server } from 'lucide-react'
 
 import aboutData from '../data/about.json'
+import testimonialsData from '../data/testimonials.json'
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Globe,
@@ -21,7 +17,7 @@ interface ServiceCardProps {
 }
 
 function ServiceCard({ iconName, title, description }: ServiceCardProps) {
-  const IconComponent = iconMap[iconName] || Code
+  const IconComponent = iconMap[iconName] || Globe
 
   return (
     <div className="bg-[#f5f5f5] dark:bg-[#252525] rounded-lg border border-[#e0e0e0] dark:border-[#3d3d3d] p-6 hover:border-[#ef4444]/50 transition-colors animate-fade-in-up">
@@ -40,18 +36,18 @@ function ServiceCard({ iconName, title, description }: ServiceCardProps) {
 
 interface TestimonialCardProps {
   name: string
-  text: string
-  avatar?: string
+  message: string
+  image?: string
 }
 
-function TestimonialCard({ name, text, avatar }: TestimonialCardProps) {
+function TestimonialCard({ name, message, image }: TestimonialCardProps) {
   return (
     <div className="bg-[#f5f5f5] dark:bg-[#252525] rounded-lg border border-[#e0e0e0] dark:border-[#3d3d3d] p-6 animate-fade-in-up">
       <div className="flex items-start gap-4">
-        <div className="w-12 h-12 rounded-full bg-[#e0e0e0] dark:bg-[#3d3d3d] flex items-center justify-center shrink-0">
-          {avatar ? (
+        <div className="w-12 h-12 rounded-full bg-[#e0e0e0] dark:bg-[#3d3d3d] flex items-center justify-center shrink-0 overflow-hidden">
+          {image ? (
             <img
-              src={avatar}
+              src={image}
               alt={name}
               className="w-full h-full rounded-full object-cover"
             />
@@ -65,7 +61,9 @@ function TestimonialCard({ name, text, avatar }: TestimonialCardProps) {
           <h4 className="text-[#333333] dark:text-white font-bold mb-2">
             {name}
           </h4>
-          <p className="text-[#666666] dark:text-[#a0a0a0] text-sm">{text}</p>
+          <p className="text-[#666666] dark:text-[#a0a0a0] text-sm">
+            {message}
+          </p>
         </div>
       </div>
     </div>
@@ -116,14 +114,15 @@ export default function AboutPage() {
       {/* Testimonials Section */}
       <section className="animate-slide-in-left">
         <h2 className="text-[#333333] dark:text-white text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8">
-          {aboutData.testimonials.title}
+          {testimonialsData.title}
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-          {aboutData.testimonials.items.map((testimonial, index) => (
+          {testimonialsData.items.map((testimonial, index) => (
             <TestimonialCard
               key={index}
               name={testimonial.name}
-              text={testimonial.text}
+              message={testimonial.message}
+              image={testimonial.image}
             />
           ))}
         </div>
