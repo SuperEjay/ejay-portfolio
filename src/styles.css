@@ -310,3 +310,16 @@ code {
 .duration-1500 {
   transition-duration: 1500ms;
 }
+
+/* Safe area for mobile devices */
+.safe-area-pb {
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+/* Responsive utilities */
+@media (max-width: 640px) {
+  .animate-slide-in-left,
+  .animate-slide-in-right {
+    animation: fade-in-up 0.6s ease-out;
+  }
+}
