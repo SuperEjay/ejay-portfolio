@@ -85,7 +85,7 @@ export default function ContactPage() {
         </h2>
 
         {/* CV Download Section */}
-        <div className="mb-6 sm:mb-8 rounded-lg border border-[#e0e0e0] dark:border-[#3d3d3d] terminal:border-[#00ff00]/30 bg-white dark:bg-[#252525] terminal:bg-[#0a0a0a] p-4 sm:p-6 animate-fade-in-up">
+        <div className="mb-6 sm:mb-8 rounded-lg border border-[#e0e0e0]/60 dark:border-[#3d3d3d]/60 terminal:border-[#00ff00]/30 bg-white/60 dark:bg-[#252525]/60 terminal:bg-[#0a0a0a]/60 backdrop-blur-md p-4 sm:p-6 animate-fade-in-up shadow-lg">
           <h3 className="text-[#333333] dark:text-white terminal:text-[#00ff00] font-bold text-lg sm:text-xl mb-3 sm:mb-4">
             Download CV
           </h3>
@@ -103,7 +103,7 @@ export default function ContactPage() {
         </div>
 
         {/* Contact Form */}
-        <div className="mt-6 sm:mt-8 rounded-lg border border-[#e0e0e0] dark:border-[#3d3d3d] terminal:border-[#00ff00]/30 bg-white dark:bg-[#252525] terminal:bg-[#0a0a0a] p-4 sm:p-6">
+        <div className="mt-6 sm:mt-8 rounded-lg border border-[#e0e0e0]/60 dark:border-[#3d3d3d]/60 terminal:border-[#00ff00]/30 bg-white/60 dark:bg-[#252525]/60 terminal:bg-[#0a0a0a]/60 backdrop-blur-md p-4 sm:p-6 shadow-lg">
           <h3 className="text-[#333333] dark:text-white terminal:text-[#00ff00] font-bold text-lg sm:text-xl mb-4">
             Contact Form
           </h3>
@@ -118,7 +118,7 @@ export default function ContactPage() {
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                   placeholder="Your full name"
-                  className="w-full rounded-lg border border-[#e0e0e0] dark:border-[#3d3d3d] terminal:border-[#00ff00]/30 bg-white dark:bg-[#1e1e1e] terminal:bg-[#0a0a0a] px-4 py-3 text-sm sm:text-base text-[#333333] dark:text-white terminal:text-[#00ff00] placeholder:text-[#999999] dark:placeholder:text-[#777777] terminal:placeholder:text-[#00ff00]/40 focus:outline-none focus:ring-2 focus:ring-[#ef4444]/40 terminal:focus:ring-[#00ff00]/40"
+                  className="w-full rounded-lg border border-[#e0e0e0]/60 dark:border-[#3d3d3d]/60 terminal:border-[#00ff00]/30 bg-white/70 dark:bg-[#1e1e1e]/70 terminal:bg-[#0a0a0a]/70 backdrop-blur-sm px-4 py-3 text-sm sm:text-base text-[#333333] dark:text-white terminal:text-[#00ff00] placeholder:text-[#999999] dark:placeholder:text-[#777777] terminal:placeholder:text-[#00ff00]/40 focus:outline-none focus:ring-2 focus:ring-[#ef4444]/40 terminal:focus:ring-[#00ff00]/40"
                 />
               </div>
 
@@ -131,7 +131,7 @@ export default function ContactPage() {
                   onChange={(e) => setEmail(e.target.value)}
                   type="email"
                   placeholder="your@email.com"
-                  className="w-full rounded-lg border border-[#e0e0e0] dark:border-[#3d3d3d] terminal:border-[#00ff00]/30 bg-white dark:bg-[#1e1e1e] terminal:bg-[#0a0a0a] px-4 py-3 text-sm sm:text-base text-[#333333] dark:text-white terminal:text-[#00ff00] placeholder:text-[#999999] dark:placeholder:text-[#777777] terminal:placeholder:text-[#00ff00]/40 focus:outline-none focus:ring-2 focus:ring-[#ef4444]/40 terminal:focus:ring-[#00ff00]/40"
+                  className="w-full rounded-lg border border-[#e0e0e0]/60 dark:border-[#3d3d3d]/60 terminal:border-[#00ff00]/30 bg-white/70 dark:bg-[#1e1e1e]/70 terminal:bg-[#0a0a0a]/70 backdrop-blur-sm px-4 py-3 text-sm sm:text-base text-[#333333] dark:text-white terminal:text-[#00ff00] placeholder:text-[#999999] dark:placeholder:text-[#777777] terminal:placeholder:text-[#00ff00]/40 focus:outline-none focus:ring-2 focus:ring-[#ef4444]/40 terminal:focus:ring-[#00ff00]/40"
                 />
               </div>
             </div>
@@ -145,7 +145,7 @@ export default function ContactPage() {
                 onChange={(e) => setMessage(e.target.value)}
                 placeholder="Write your message here..."
                 rows={6}
-                className="w-full resize-y rounded-lg border border-[#e0e0e0] dark:border-[#3d3d3d] terminal:border-[#00ff00]/30 bg-white dark:bg-[#1e1e1e] terminal:bg-[#0a0a0a] px-4 py-3 text-sm sm:text-base text-[#333333] dark:text-white terminal:text-[#00ff00] placeholder:text-[#999999] dark:placeholder:text-[#777777] terminal:placeholder:text-[#00ff00]/40 focus:outline-none focus:ring-2 focus:ring-[#ef4444]/40 terminal:focus:ring-[#00ff00]/40"
+                className="w-full resize-y rounded-lg border border-[#e0e0e0]/60 dark:border-[#3d3d3d]/60 terminal:border-[#00ff00]/30 bg-white/70 dark:bg-[#1e1e1e]/70 terminal:bg-[#0a0a0a]/70 backdrop-blur-sm px-4 py-3 text-sm sm:text-base text-[#333333] dark:text-white terminal:text-[#00ff00] placeholder:text-[#999999] dark:placeholder:text-[#777777] terminal:placeholder:text-[#00ff00]/40 focus:outline-none focus:ring-2 focus:ring-[#ef4444]/40 terminal:focus:ring-[#00ff00]/40"
               />
             </div>
 

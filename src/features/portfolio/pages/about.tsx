@@ -20,7 +20,7 @@ function ServiceCard({ iconName, title, description }: ServiceCardProps) {
   const IconComponent = iconMap[iconName] || Globe
 
   return (
-    <div className="bg-[#f5f5f5] dark:bg-[#252525] terminal:bg-[#0a0a0a] rounded-lg border border-[#e0e0e0] dark:border-[#3d3d3d] terminal:border-[#00ff00]/30 p-6 hover:border-[#ef4444]/50 terminal:hover:border-[#00ff00]/50 transition-colors animate-fade-in-up">
+    <div className="bg-white/60 dark:bg-[#252525]/60 terminal:bg-[#0a0a0a]/60 backdrop-blur-md rounded-lg border border-[#e0e0e0]/60 dark:border-[#3d3d3d]/60 terminal:border-[#00ff00]/30 p-6 hover:border-[#ef4444]/50 terminal:hover:border-[#00ff00]/50 transition-colors animate-fade-in-up shadow-lg">
       <div className="text-[#ef4444] terminal:text-[#00ff00] mb-4">
         <IconComponent className="size-6 sm:size-8" />
       </div>
@@ -42,9 +42,9 @@ interface TestimonialCardProps {
 
 function TestimonialCard({ name, message, image }: TestimonialCardProps) {
   return (
-    <div className="bg-[#f5f5f5] dark:bg-[#252525] terminal:bg-[#0a0a0a] rounded-lg border border-[#e0e0e0] dark:border-[#3d3d3d] terminal:border-[#00ff00]/30 p-6 animate-fade-in-up">
+    <div className="bg-white/60 dark:bg-[#252525]/60 terminal:bg-[#0a0a0a]/60 backdrop-blur-md rounded-lg border border-[#e0e0e0]/60 dark:border-[#3d3d3d]/60 terminal:border-[#00ff00]/30 p-6 animate-fade-in-up shadow-lg">
       <div className="flex items-start gap-4">
-        <div className="w-12 h-12 rounded-full bg-[#e0e0e0] dark:bg-[#3d3d3d] terminal:bg-[#1a1a1a] border terminal:border-[#00ff00]/30 flex items-center justify-center shrink-0 overflow-hidden">
+        <div className="w-12 h-12 rounded-full bg-[#e0e0e0]/70 dark:bg-[#3d3d3d]/70 terminal:bg-[#1a1a1a]/70 backdrop-blur-sm border terminal:border-[#00ff00]/30 flex items-center justify-center shrink-0 overflow-hidden">
           {image ? (
             <img
               src={image}

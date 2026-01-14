@@ -53,7 +53,7 @@ export default function PortfolioSidebar() {
 
   return (
     <div
-      className="flex flex-col gap-4 sm:gap-6 px-4 sm:px-6 py-6 sm:py-10 bg-white dark:bg-[#252525] terminal:bg-[#0a0a0a] rounded-lg border border-[#e0e0e0] dark:border-[#3d3d3d] terminal:border-[#00ff00]/30 shadow-lg h-fit animate-fade-in-up transition-colors"
+      className="flex flex-col gap-4 sm:gap-6 px-4 sm:px-6 py-6 sm:py-10 bg-white/60 dark:bg-[#252525]/60 terminal:bg-[#0a0a0a]/60 backdrop-blur-md rounded-lg border border-[#e0e0e0]/60 dark:border-[#3d3d3d]/60 terminal:border-[#00ff00]/30 shadow-lg h-fit animate-fade-in-up transition-colors"
       style={{ fontFamily: "'Poppins', sans-serif" }}
     >
       {/* Profile Section - Always visible */}

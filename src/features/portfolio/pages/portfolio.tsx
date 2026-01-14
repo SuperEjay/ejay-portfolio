@@ -20,14 +20,14 @@ function ProjectCard({
   image,
 }: ProjectCardProps) {
   return (
-    <div className="group bg-[#f5f5f5] dark:bg-[#252525] terminal:bg-[#0a0a0a] rounded-lg border border-[#e0e0e0] dark:border-[#3d3d3d] terminal:border-[#00ff00]/30 overflow-hidden hover:border-[#ef4444]/50 terminal:hover:border-[#00ff00]/50 transition-all duration-300 animate-fade-in-up">
+    <div className="group bg-white/60 dark:bg-[#252525]/60 terminal:bg-[#0a0a0a]/60 backdrop-blur-md rounded-lg border border-[#e0e0e0]/60 dark:border-[#3d3d3d]/60 terminal:border-[#00ff00]/30 overflow-hidden hover:border-[#ef4444]/50 terminal:hover:border-[#00ff00]/50 transition-all duration-300 animate-fade-in-up shadow-lg">
       <a
         href={link}
         target="_blank"
         rel="noopener noreferrer"
         className="block"
       >
-        <div className="relative aspect-video bg-[#e0e0e0] dark:bg-[#3d3d3d] terminal:bg-[#1a1a1a] overflow-hidden">
+        <div className="relative aspect-video bg-[#e0e0e0]/70 dark:bg-[#3d3d3d]/70 terminal:bg-[#1a1a1a]/70 backdrop-blur-sm overflow-hidden">
           {image ? (
             <img
               src={image}

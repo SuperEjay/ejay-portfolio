@@ -39,7 +39,7 @@ export default function Portfolio() {
           </div>
 
           {/* Main Content */}
-          <div className="w-full min-h-screen bg-white dark:bg-[#1e1e1e] terminal:bg-[#0a0a0a] rounded-lg border border-[#e0e0e0] dark:border-[#3d3d3d] terminal:border-[#00ff00]/30 p-4 sm:p-6 lg:p-8 pt-4 sm:pt-8 lg:pt-12 pb-24 sm:pb-6 lg:pb-8 transition-colors relative">
+          <div className="w-full min-h-screen bg-white/60 dark:bg-[#1e1e1e]/60 terminal:bg-[#0a0a0a]/60 backdrop-blur-md rounded-lg border border-[#e0e0e0]/60 dark:border-[#3d3d3d]/60 terminal:border-[#00ff00]/30 p-4 sm:p-6 lg:p-8 pt-4 sm:pt-8 lg:pt-12 pb-24 sm:pb-6 lg:pb-8 transition-colors relative shadow-lg">
             {/* Navigation - Hidden on mobile, visible on larger screens */}
             <div className="hidden sm:block absolute -top-4 sm:-top-5 lg:-top-6 right-4 sm:right-6 lg:right-8 z-10">
               <PortfolioNav

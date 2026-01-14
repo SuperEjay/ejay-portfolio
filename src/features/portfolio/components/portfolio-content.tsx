@@ -8,7 +8,7 @@ interface ServiceCardProps {
 
 function ServiceCard({ icon, title, description }: ServiceCardProps) {
   return (
-    <div className="bg-[#f5f5f5] dark:bg-[#252525] rounded-lg border border-[#e0e0e0] dark:border-[#3d3d3d] p-6 hover:border-[#ef4444]/50 transition-colors animate-fade-in-up">
+    <div className="bg-white/60 dark:bg-[#252525]/60 terminal:bg-[#0a0a0a]/60 backdrop-blur-md rounded-lg border border-[#e0e0e0]/60 dark:border-[#3d3d3d]/60 terminal:border-[#00ff00]/30 p-6 hover:border-[#ef4444]/50 terminal:hover:border-[#00ff00]/50 transition-colors animate-fade-in-up shadow-lg">
       <div className="text-[#ef4444] mb-4">{icon}</div>
       <h3 className="text-[#333333] dark:text-white font-bold text-lg mb-2">
         {title}
@@ -28,9 +28,9 @@ interface TestimonialCardProps {
 
 function TestimonialCard({ name, text, avatar }: TestimonialCardProps) {
   return (
-    <div className="bg-[#f5f5f5] dark:bg-[#252525] rounded-lg border border-[#e0e0e0] dark:border-[#3d3d3d] p-6 animate-fade-in-up">
+    <div className="bg-white/60 dark:bg-[#252525]/60 terminal:bg-[#0a0a0a]/60 backdrop-blur-md rounded-lg border border-[#e0e0e0]/60 dark:border-[#3d3d3d]/60 terminal:border-[#00ff00]/30 p-6 animate-fade-in-up shadow-lg">
       <div className="flex items-start gap-4">
-        <div className="w-12 h-12 rounded-full bg-[#e0e0e0] dark:bg-[#3d3d3d] flex items-center justify-center shrink-0">
+        <div className="w-12 h-12 rounded-full bg-[#e0e0e0]/70 dark:bg-[#3d3d3d]/70 terminal:bg-[#1a1a1a]/70 backdrop-blur-sm flex items-center justify-center shrink-0">
           {avatar ? (
             <img
               src={avatar}
