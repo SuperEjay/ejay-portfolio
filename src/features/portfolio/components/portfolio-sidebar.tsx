@@ -1,14 +1,5 @@
 import { useState } from 'react'
-import {
-  CalendarDays,
-  ChevronDown,
-  Facebook,
-  Github,
-  Linkedin,
-  Mail,
-  MapPin,
-  Phone,
-} from 'lucide-react'
+import { ChevronDown, Facebook, Github, Linkedin, Mail } from 'lucide-react'
 
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { Badge } from '@/components/ui/badge'
@@ -120,33 +111,14 @@ export default function PortfolioSidebar() {
       >
         <div className="w-full h-px bg-[#e0e0e0] dark:bg-[#3d3d3d] terminal:bg-[#00ff00]/30" />
 
-        {/* Contact items - 2 columns on tablet, 1 column on mobile/desktop */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3 sm:gap-4 px-0 sm:px-2">
-          <ContactItem
-            icon={<Mail className="size-4 sm:size-5" />}
-            label="Email"
-            value="earnest0987@gmail.com"
-            href="mailto:earnest0987@gmail.com"
-          />
-          <ContactItem
-            icon={<Phone className="size-4 sm:size-5" />}
-            label="Phone"
-            value="(+63) 9386134057"
-            href="tel:+639386134057"
-          />
-          <ContactItem
-            icon={<CalendarDays className="size-4 sm:size-5" />}
-            label="Birthday"
-            value="October 29, 1999"
-          />
-          <ContactItem
-            icon={<MapPin className="size-4 sm:size-5" />}
-            label="Location"
-            value="Navotas, Metro Manila Philippines"
-          />
-        </div>
-
         <div className="flex justify-center gap-4 pt-2">
+          <a
+            href="mailto:earnest0987@gmail.com"
+            className="flex items-center justify-center w-10 h-10 rounded-full border border-[#e0e0e0] dark:border-[#3d3d3d] terminal:border-[#00ff00]/30 text-[#666666] dark:text-[#a0a0a0] terminal:text-[#00ff00]/80 hover:bg-[#ef4444] terminal:hover:bg-[#00ff00] hover:text-white terminal:hover:text-[#0a0a0a] hover:border-[#ef4444] terminal:hover:border-[#00ff00] transition-all duration-300"
+            aria-label="Email"
+          >
+            <Mail className="size-5" />
+          </a>
           <a
             href="https://www.facebook.com/ejohngungon"
             target="_blank"

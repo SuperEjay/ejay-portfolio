@@ -1,3 +1,4 @@
+import { Download } from 'lucide-react'
 import { useMemo, useState, type FormEvent } from 'react'
 
 import { sendContactEmail } from '../server/send-contact-email'
@@ -55,11 +56,6 @@ export default function ContactPage() {
     }
   }
 
-  const mapQuery = encodeURIComponent(
-    '544 Gov. A. Pascual St. San Roque Navotas City',
-  )
-  const mapSrc = `https://www.google.com/maps?q=${mapQuery}&output=embed`
-
   return (
     <div
       style={{ fontFamily: "'Poppins', sans-serif" }}
@@ -71,17 +67,22 @@ export default function ContactPage() {
           <span className="absolute bottom-0 left-0 w-8 sm:w-12 h-1 bg-[#ef4444] terminal:bg-[#00ff00]" />
         </h2>
 
-        {/* Map */}
-        <div className="rounded-lg border border-[#e0e0e0] dark:border-[#3d3d3d] terminal:border-[#00ff00]/30 bg-white dark:bg-[#252525] terminal:bg-[#0a0a0a] overflow-hidden shadow-sm dark:shadow-none terminal:shadow-none">
-          <div className="relative w-full aspect-16/10 sm:aspect-16/8 lg:aspect-video">
-            <iframe
-              title="Map"
-              src={mapSrc}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              className="absolute inset-0 h-full w-full"
-            />
-          </div>
+        {/* CV Download Section */}
+        <div className="mb-6 sm:mb-8 rounded-lg border border-[#e0e0e0] dark:border-[#3d3d3d] terminal:border-[#00ff00]/30 bg-white dark:bg-[#252525] terminal:bg-[#0a0a0a] p-4 sm:p-6 animate-fade-in-up">
+          <h3 className="text-[#333333] dark:text-white terminal:text-[#00ff00] font-bold text-lg sm:text-xl mb-3 sm:mb-4">
+            Download CV
+          </h3>
+          <p className="text-[#666666] dark:text-[#a0a0a0] terminal:text-[#00ff00]/80 text-sm sm:text-base mb-4">
+            Download my resume to learn more about my experience and skills.
+          </p>
+          <a
+            href="/cv/Earnest-John-Gungon-CV.pdf"
+            download="Earnest-John-Gungon-CV.pdf"
+            className="inline-flex items-center gap-2 rounded-lg bg-[#ef4444] terminal:bg-[#00ff00] px-5 py-3 text-sm sm:text-base font-semibold text-white terminal:text-[#0a0a0a] transition-colors hover:bg-[#dc2626] terminal:hover:bg-[#00ff00]/80"
+          >
+            <Download className="size-4 sm:size-5" />
+            Download CV
+          </a>
         </div>
 
         {/* Contact Form */}
