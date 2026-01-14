@@ -1,10 +1,7 @@
 {
   "aboutMe": {
     "paragraphs": [
-      "I'm a full-stack web developer specializing in building modern, scalable, and user-focused applications. I work with HTML, CSS, JavaScript, and PHP, and use frameworks like Laravel, React, Next.js, and Inertia.js to create fast, maintainable, and production-ready systems.",
-      "On the backend, I design structured APIs and data-driven applications using Laravel, MySQL, PostgreSQL, and Supabase. On the frontend, I craft clean and responsive interfaces with TypeScript, Tailwind CSS, and modern React-based workflows.",
-      "I also develop mobile applications using React Native and Ionic, and handle deployments using tools like DigitalOcean, Vercel, PM2, and Git, ensuring reliable hosting, version control, and smooth production releases.",
-      "Overall, I focus on turning ideas into functional products—balancing performance, clean code, and real-world usability."
+      "I'm a full-stack web developer building modern, scalable applications using Laravel, React, Next.js, and Inertia.js, with a strong foundation in HTML, CSS, JavaScript, and PHP. I deliver end-to-end solutions—from clean, responsive interfaces to robust APIs, mobile apps, and production-ready deployments."
     ]
   },
   "whatImDoing": {

@@ -5,10 +5,12 @@ import { usePageHead } from '../hooks/use-page-head'
 import { PortfolioLayout } from './layout'
 import PortfolioNav from './portfolio-nav'
 import PortfolioSidebar from './portfolio-sidebar'
+import WelcomeAnimation from './welcome-animation'
 import type { PageType } from '../types'
 
 export default function Portfolio() {
   const [activePage, setActivePage] = useState<PageType>('about')
+  const [showWelcome, setShowWelcome] = useState(true)
 
   // Update head content based on active page
   usePageHead(activePage)
@@ -30,6 +32,9 @@ export default function Portfolio() {
 
   return (
     <PortfolioLayout>
+      {showWelcome && (
+        <WelcomeAnimation onComplete={() => setShowWelcome(false)} />
+      )}
       <div className="max-w-[1300px] mx-auto w-full">
         {/* Mobile: Stack layout, Desktop: Grid layout */}
         <div className="flex flex-col lg:grid lg:grid-cols-[280px_1fr] xl:grid-cols-[300px_1fr] gap-4 sm:gap-6 items-start">
