@@ -2,6 +2,11 @@
   "title": "Testimonials",
   "items": [
     {
+      "name": "Miguel Kalaw",
+      "image": "/assets/images/testimonials/miguel.png",
+      "message": "Sir Ej was the first senior engineer I got a privilege to work with. He shared his in depth knowledge on building a product from the ground up which further enriched my domain knowledge about software development."
+    },
+    {
       "name": "Michael Sabino",
       "image": "/assets/images/testimonials/michael.jpeg",
       "message": "Sir Ejay was my first senior developer and tech lead, and he greatly shaped my growth as a developer. He freely shared his knowledge, encouraged learning new technologies as a team, and pushed us to apply them in real work. A strong problem solver and clear thinker, he creates a supportive, non-intimidating environment that motivates everyone to perform at their best."
