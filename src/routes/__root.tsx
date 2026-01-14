@@ -1,11 +1,40 @@
-import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
+import { HeadContent, Scripts, createRootRoute, Link } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
+import { Home } from 'lucide-react'
 
 import Header from '../components/Header'
 import { ThemeProvider } from '../contexts/theme-context'
 
 import appCss from '../styles.css?url'
+
+function NotFound() {
+  return (
+    <div
+      style={{ fontFamily: "'Poppins', sans-serif" }}
+      className="min-h-screen flex items-center justify-center bg-white dark:bg-[#1a1a1a] terminal:bg-[#0a0a0a] p-4"
+    >
+      <div className="text-center max-w-md w-full">
+        <h1 className="text-6xl sm:text-8xl font-bold text-[#ef4444] terminal:text-[#00ff00] mb-4">
+          404
+        </h1>
+        <h2 className="text-2xl sm:text-3xl font-bold text-[#333333] dark:text-white terminal:text-[#00ff00] mb-4">
+          Page Not Found
+        </h2>
+        <p className="text-[#666666] dark:text-[#a0a0a0] terminal:text-[#00ff00]/80 text-base sm:text-lg mb-8">
+          The page you're looking for doesn't exist or has been moved.
+        </p>
+        <Link
+          to="/"
+          className="inline-flex items-center gap-2 rounded-lg bg-[#ef4444] terminal:bg-[#00ff00] px-6 py-3 text-base font-semibold text-white terminal:text-[#0a0a0a] transition-colors hover:bg-[#dc2626] terminal:hover:bg-[#00ff00]/80"
+        >
+          <Home className="size-5" />
+          Go Home
+        </Link>
+      </div>
+    </div>
+  )
+}
 
 export const Route = createRootRoute({
   head: () => ({
@@ -48,6 +77,7 @@ export const Route = createRootRoute({
   }),
 
   shellComponent: RootDocument,
+  notFoundComponent: NotFound,
 })
 
 function RootDocument({ children }: { children: React.ReactNode }) {
