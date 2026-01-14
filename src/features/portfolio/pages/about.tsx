@@ -1,15 +1,33 @@
-import { Camera, Code, PenTool, Smartphone } from 'lucide-react'
+import {
+  Globe,
+  Layout,
+  Rocket,
+  Server,
+} from 'lucide-react'
+
+import aboutData from '../data/about.json'
+
+const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+  Globe,
+  Layout,
+  Server,
+  Rocket,
+}
 
 interface ServiceCardProps {
-  icon: React.ReactNode
+  iconName: string
   title: string
   description: string
 }
 
-function ServiceCard({ icon, title, description }: ServiceCardProps) {
+function ServiceCard({ iconName, title, description }: ServiceCardProps) {
+  const IconComponent = iconMap[iconName] || Code
+
   return (
     <div className="bg-[#f5f5f5] dark:bg-[#252525] rounded-lg border border-[#e0e0e0] dark:border-[#3d3d3d] p-6 hover:border-[#ef4444]/50 transition-colors animate-fade-in-up">
-      <div className="text-[#ef4444] mb-4">{icon}</div>
+      <div className="text-[#ef4444] mb-4">
+        <IconComponent className="size-6 sm:size-8" />
+      </div>
       <h3 className="text-[#333333] dark:text-white font-bold text-lg mb-2">
         {title}
       </h3>
@@ -67,74 +85,47 @@ export default function AboutPage() {
           <span className="absolute bottom-0 left-0 w-8 sm:w-12 h-1 bg-[#ef4444]" />
         </h2>
         <div className="mt-4 sm:mt-6 space-y-3 sm:space-y-4">
-          <p className="text-[#555555] dark:text-white text-sm sm:text-base leading-relaxed">
-            Hi, I'm Ejay — a web developer who enjoys turning ideas into
-            functional, user-friendly digital experiences.
-          </p>
-          <p className="text-[#555555] dark:text-white text-sm sm:text-base leading-relaxed">
-            I work mainly with modern web technologies like HTML, CSS,
-            JavaScript, PHP, and Laravel, and I enjoy building systems that
-            solve real-world problems—from internal tools to community-focused
-            platforms. I'm especially interested in creating clean, maintainable
-            code and continuously improving how things look, feel, and perform.
-          </p>
-          <p className="text-[#555555] dark:text-white text-sm sm:text-base leading-relaxed">
-            Beyond coding, I'm constantly learning—whether it's refining my
-            front-end skills, exploring backend architecture, or experimenting
-            with new tools and workflows. I value growth, collaboration, and
-            building things that actually make an impact.
-          </p>
-          <p className="text-[#555555] dark:text-white text-sm sm:text-base leading-relaxed">
-            When I'm not coding, you'll usually find me learning something new,
-            planning my next project, or thinking about how technology can be
-            used to improve everyday life.
-          </p>
+          {aboutData.aboutMe.paragraphs.map((paragraph, index) => (
+            <p
+              key={index}
+              className="text-[#555555] dark:text-white text-sm sm:text-base leading-relaxed"
+            >
+              {paragraph}
+            </p>
+          ))}
         </div>
       </section>
 
       {/* What I'm Doing Section */}
       <section className="mb-8 sm:mb-12 animate-slide-in-right">
         <h2 className="text-[#333333] dark:text-white text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8">
-          What I'm Doing
+          {aboutData.whatImDoing.title}
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-          <ServiceCard
-            icon={<PenTool className="size-6 sm:size-8" />}
-            title="Web Design"
-            description="The most modern and high-quality design made at a professional level."
-          />
-          <ServiceCard
-            icon={<Code className="size-6 sm:size-8" />}
-            title="Web Development"
-            description="High-quality development of sites at the professional level."
-          />
-          <ServiceCard
-            icon={<Smartphone className="size-6 sm:size-8" />}
-            title="Mobile Apps"
-            description="Professional development of applications for iOS and Android."
-          />
-          <ServiceCard
-            icon={<Camera className="size-6 sm:size-8" />}
-            title="Photography"
-            description="I make high-quality photos of any category at a professional level."
-          />
+          {aboutData.whatImDoing.services.map((service, index) => (
+            <ServiceCard
+              key={index}
+              iconName={service.icon}
+              title={service.title}
+              description={service.description}
+            />
+          ))}
         </div>
       </section>
 
       {/* Testimonials Section */}
       <section className="animate-slide-in-left">
         <h2 className="text-[#333333] dark:text-white text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8">
-          Testimonials
+          {aboutData.testimonials.title}
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-          <TestimonialCard
-            name="Daniel Lewis"
-            text="Earnest was hired to create a corporate identity. We were very pleased with the work done. He has a lot of experience and is very concerned about the needs of client."
-          />
-          <TestimonialCard
-            name="Jessica Miller"
-            text="Earnest was hired to create a corporate identity. We were very pleased with the work done. He has a lot of experience and is very concerned about the needs of client."
-          />
+          {aboutData.testimonials.items.map((testimonial, index) => (
+            <TestimonialCard
+              key={index}
+              name={testimonial.name}
+              text={testimonial.text}
+            />
+          ))}
         </div>
       </section>
     </div>
