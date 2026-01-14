@@ -20,12 +20,12 @@ interface ContactItemProps {
 
 function ContactItem({ icon, label, value, href }: ContactItemProps) {
   const content = (
-    <div className="flex items-start gap-3 w-full">
-      <div className="p-2 rounded-lg border border-[#ef4444] text-[#ef4444] shrink-0 bg-[#ef4444]/10">
+    <div className="flex items-start gap-3 w-full group">
+      <div className="p-2 rounded-lg border border-[#ef4444] text-[#ef4444] shrink-0 bg-[#ef4444]/10 group-hover:border-[#ef4444] group-hover:text-[#ef4444] group-hover:bg-[#ef4444]/20 transition-colors">
         {icon}
       </div>
       <div className="flex flex-col gap-0.5 min-w-0 flex-1">
-        <span className="text-[#666666] dark:text-[#a0a0a0] text-xs uppercase tracking-wide font-medium">
+        <span className="text-[#666666] dark:text-[#a0a0a0] group-hover:text-[#ef4444] text-xs uppercase tracking-wide font-medium transition-colors">
           {label}
         </span>
         <span className="text-[#333333] dark:text-white text-xs truncate" title={value}>
@@ -39,7 +39,7 @@ function ContactItem({ icon, label, value, href }: ContactItemProps) {
     return (
       <a
         href={href}
-        className="block hover:opacity-80 transition-opacity"
+        className="block transition-all hover:translate-x-1"
         target={href.startsWith('http') ? '_blank' : undefined}
         rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
       >
@@ -48,7 +48,7 @@ function ContactItem({ icon, label, value, href }: ContactItemProps) {
     )
   }
 
-  return content
+  return <div className="block">{content}</div>
 }
 
 export default function PortfolioSidebar() {
@@ -114,7 +114,7 @@ export default function PortfolioSidebar() {
           href="https://www.facebook.com/ejohngungon"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-[#666666] dark:text-[#a0a0a0] hover:text-[#06b6d4] transition-colors"
+          className="text-[#666666] dark:text-[#a0a0a0] hover:text-[#ef4444] transition-colors"
           aria-label="Facebook"
         >
           <Facebook className="size-5" />
@@ -123,7 +123,7 @@ export default function PortfolioSidebar() {
           href="https://www.linkedin.com/in/superejay/"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-[#666666] dark:text-[#a0a0a0] hover:text-[#06b6d4] transition-colors"
+          className="text-[#666666] dark:text-[#a0a0a0] hover:text-[#ef4444] transition-colors"
           aria-label="LinkedIn"
         >
           <Linkedin className="size-5" />
@@ -132,7 +132,7 @@ export default function PortfolioSidebar() {
           href="https://github.com/SuperEjay"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-[#666666] dark:text-[#a0a0a0] hover:text-[#06b6d4] transition-colors"
+          className="text-[#666666] dark:text-[#a0a0a0] hover:text-[#ef4444] transition-colors"
           aria-label="GitHub"
         >
           <Github className="size-5" />
