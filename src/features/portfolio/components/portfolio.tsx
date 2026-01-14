@@ -11,8 +11,10 @@ export default function Portfolio() {
           <div className="sticky top-4">
             <PortfolioSidebar />
           </div>
-          <div className="min-h-screen bg-[#1e1e1e] rounded-lg border border-[#3d3d3d] p-8">
-            <PortfolioNav />
+          <div className="min-h-screen bg-white dark:bg-[#1e1e1e] rounded-lg border border-[#e0e0e0] dark:border-[#3d3d3d] p-8 transition-colors">
+            <div className="mb-8">
+              <PortfolioNav />
+            </div>
             <PortfolioContent />
           </div>
         </div>

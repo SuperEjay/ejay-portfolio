@@ -25,10 +25,10 @@ function ContactItem({ icon, label, value, href }: ContactItemProps) {
         {icon}
       </div>
       <div className="flex flex-col gap-0.5 min-w-0 flex-1">
-        <span className="text-[#a0a0a0] text-xs uppercase tracking-wide font-medium">
+        <span className="text-[#666666] dark:text-[#a0a0a0] text-xs uppercase tracking-wide font-medium">
           {label}
         </span>
-        <span className="text-white text-xs truncate" title={value}>
+        <span className="text-[#333333] dark:text-white text-xs truncate" title={value}>
           {value}
         </span>
       </div>
@@ -54,7 +54,7 @@ function ContactItem({ icon, label, value, href }: ContactItemProps) {
 export default function PortfolioSidebar() {
   return (
     <div
-      className="flex flex-col gap-6 px-4 py-10 bg-[#252525] rounded-lg border border-[#3d3d3d] shadow-lg h-fit"
+      className="flex flex-col gap-6 px-4 py-10 bg-white dark:bg-[#252525] rounded-lg border border-[#e0e0e0] dark:border-[#3d3d3d] shadow-lg h-fit animate-fade-in-up transition-colors"
       style={{ fontFamily: "'Poppins', sans-serif" }}
     >
       {/* Profile Section */}
@@ -71,18 +71,18 @@ export default function PortfolioSidebar() {
             />
           </AspectRatio>
         </div>
-        <p className="text-white text-center font-bold text-[18px]">
+        <p className="text-[#333333] dark:text-white text-center font-bold text-[18px]">
           Earnest John Gungon
         </p>
         <Badge
           variant="outline"
-          className="border-[#4a4a4a] text-[#a0a0a0] bg-transparent font-normal"
+          className="border-[#d0d0d0] dark:border-[#4a4a4a] text-[#666666] dark:text-[#a0a0a0] bg-transparent font-normal"
         >
           Software Engineer
         </Badge>
       </div>
 
-      <div className="w-full h-px bg-[#3d3d3d]" />
+      <div className="w-full h-px bg-[#e0e0e0] dark:bg-[#3d3d3d]" />
 
       <div className="flex flex-col gap-4 px-2">
         <ContactItem
@@ -114,7 +114,7 @@ export default function PortfolioSidebar() {
           href="https://www.facebook.com/ejohngungon"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-[#a0a0a0] hover:text-[#06b6d4] transition-colors"
+          className="text-[#666666] dark:text-[#a0a0a0] hover:text-[#06b6d4] transition-colors"
           aria-label="Facebook"
         >
           <Facebook className="size-5" />
@@ -123,7 +123,7 @@ export default function PortfolioSidebar() {
           href="https://www.linkedin.com/in/superejay/"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-[#a0a0a0] hover:text-[#06b6d4] transition-colors"
+          className="text-[#666666] dark:text-[#a0a0a0] hover:text-[#06b6d4] transition-colors"
           aria-label="LinkedIn"
         >
           <Linkedin className="size-5" />
@@ -132,7 +132,7 @@ export default function PortfolioSidebar() {
           href="https://github.com/SuperEjay"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-[#a0a0a0] hover:text-[#06b6d4] transition-colors"
+          className="text-[#666666] dark:text-[#a0a0a0] hover:text-[#06b6d4] transition-colors"
           aria-label="GitHub"
         >
           <Github className="size-5" />
