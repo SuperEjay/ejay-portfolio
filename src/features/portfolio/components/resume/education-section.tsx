@@ -1,5 +1,6 @@
 import { GraduationCap } from 'lucide-react'
 
+import educationData from '../../data/education.json'
 import { ResumeItem } from './resume-item'
 
 export function EducationSection() {
@@ -10,17 +11,17 @@ export function EducationSection() {
         Education
       </h3>
       <div className="space-y-0">
-        <ResumeItem
-          title="Bachelor of Science in Information Technology"
-          company="Polytechnic University of the Philippines"
-          location="Philippines"
-          period="06/2014 — 05/2019"
-          bullets={[
-            'Completed a comprehensive program in Information Technology',
-            'Focused on software development, database management, and system analysis',
-          ]}
-          isLast
-        />
+        {educationData.map((item, index) => (
+          <ResumeItem
+            key={index}
+            title={item.title}
+            company={item.company}
+            location={item.location}
+            period={item.period}
+            bullets={item.bullets}
+            isLast={index === educationData.length - 1}
+          />
+        ))}
       </div>
     </section>
   )

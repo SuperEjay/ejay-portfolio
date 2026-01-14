@@ -1,0 +1,31 @@
+{
+  "categories": [
+    {
+      "name": "Programming Languages",
+      "skills": ["HTML", "CSS", "JavaScript", "PHP"]
+    },
+    {
+      "name": "Frameworks and Libraries",
+      "skills": [
+        "Laravel",
+        "React",
+        "NextJS",
+        "Inertia JS",
+        "TypeScript",
+        "TailwindCSS",
+        "React Native",
+        "Ionic",
+        "jQuery",
+        "Codeigniter"
+      ]
+    },
+    {
+      "name": "Databases Tools",
+      "skills": ["MySQL", "Postgresql", "SupaBase"]
+    },
+    {
+      "name": "Other Tools",
+      "skills": ["DigitalOcean", "Git", "NameCheap", "GoDaddy", "Vercel", "PM2"]
+    }
+  ]
+}

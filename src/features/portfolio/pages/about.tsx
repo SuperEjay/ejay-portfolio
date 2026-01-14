@@ -68,17 +68,26 @@ export default function AboutPage() {
         </h2>
         <div className="mt-4 sm:mt-6 space-y-3 sm:space-y-4">
           <p className="text-[#555555] dark:text-white text-sm sm:text-base leading-relaxed">
-            I'm a Software Engineer from Navotas, Metro Manila, Philippines,
-            working in web development and software engineering. I enjoy turning
-            complex problems into simple, beautiful and intuitive solutions.
+            Hi, I'm Ejay — a web developer who enjoys turning ideas into
+            functional, user-friendly digital experiences.
           </p>
           <p className="text-[#555555] dark:text-white text-sm sm:text-base leading-relaxed">
-            My job is to build your application so that it is functional and
-            user-friendly but at the same time attractive. Moreover, I add
-            personal touch to your product and make sure that is eye-catching
-            and easy to use. My aim is to bring across your message and identity
-            in the most creative way. I created web applications for various
-            projects and clients.
+            I work mainly with modern web technologies like HTML, CSS,
+            JavaScript, PHP, and Laravel, and I enjoy building systems that
+            solve real-world problems—from internal tools to community-focused
+            platforms. I'm especially interested in creating clean, maintainable
+            code and continuously improving how things look, feel, and perform.
+          </p>
+          <p className="text-[#555555] dark:text-white text-sm sm:text-base leading-relaxed">
+            Beyond coding, I'm constantly learning—whether it's refining my
+            front-end skills, exploring backend architecture, or experimenting
+            with new tools and workflows. I value growth, collaboration, and
+            building things that actually make an impact.
+          </p>
+          <p className="text-[#555555] dark:text-white text-sm sm:text-base leading-relaxed">
+            When I'm not coding, you'll usually find me learning something new,
+            planning my next project, or thinking about how technology can be
+            used to improve everyday life.
           </p>
         </div>
       </section>

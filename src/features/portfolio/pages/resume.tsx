@@ -2,6 +2,7 @@ import {
   ActivitiesSection,
   EducationSection,
   ExperienceSection,
+  SkillsSection,
 } from '../components/resume'
 
 export default function ResumePage() {
@@ -18,6 +19,7 @@ export default function ResumePage() {
 
         <EducationSection />
         <ExperienceSection />
+        <SkillsSection />
         <ActivitiesSection />
       </section>
     </div>

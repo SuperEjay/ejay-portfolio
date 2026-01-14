@@ -1,5 +1,6 @@
 import { Briefcase } from 'lucide-react'
 
+import experienceData from '../../data/experience.json'
 import { ResumeItem } from './resume-item'
 
 export function ExperienceSection() {
@@ -10,31 +11,17 @@ export function ExperienceSection() {
         Experience
       </h3>
       <div className="space-y-0">
-        <ResumeItem
-          title="Senior Software Developer"
-          company="Springboard Philippines"
-          location="Philippines"
-          period="07/2020 — Present"
-          bullets={[
-            'Led the design and development of a full maritime payroll system, combining accounting features and crew management into one streamlined platform',
-            'Led a team of developers as the lead, overseeing the planning, development, and delivery of web applications',
-            'Helped clients smoothly migrate their WordPress websites to different hosting providers, offering hands-on support and training when needed',
-            'Collaborated with a cross-functional team to build a modern e-commerce platform for DutyFree Philippines',
-            'Worked closely with clients to gather requirements, give product demos, and quickly respond to questions and feedback',
-            'Developed and deployed web and mobile applications for government-related projects, managing the full lifecycle from development to production',
-            'Set up and maintained development and production environments, including API integrations and ensuring smooth deployment of applications',
-          ]}
-        />
-        <ResumeItem
-          title="Web Developer"
-          company="Lee System Technology Ventures Inc"
-          location="Caloocan City, Philippines"
-          period="01/2019 — 07/2020"
-          bullets={[
-            'Maintained an in-house system, specifically in the field of human resources and accounting',
-          ]}
-          isLast
-        />
+        {experienceData.map((item, index) => (
+          <ResumeItem
+            key={index}
+            title={item.title}
+            company={item.company}
+            location={item.location}
+            period={item.period}
+            bullets={item.bullets}
+            isLast={index === experienceData.length - 1}
+          />
+        ))}
       </div>
     </section>
   )
