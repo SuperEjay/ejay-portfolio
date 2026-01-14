@@ -1,4 +1,4 @@
-import { Download } from 'lucide-react'
+import { Download, Loader2 } from 'lucide-react'
 import { useMemo, useState, type FormEvent } from 'react'
 
 import { sendContactEmail } from '../server/send-contact-email'
@@ -59,8 +59,25 @@ export default function ContactPage() {
   return (
     <div
       style={{ fontFamily: "'Poppins', sans-serif" }}
-      className="animate-fade-in"
+      className="animate-fade-in relative"
     >
+      {/* Loading Overlay */}
+      {isSending && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 dark:bg-black/70 terminal:bg-[#0a0a0a]/90 backdrop-blur-sm">
+          <div className="rounded-lg border border-[#e0e0e0] dark:border-[#3d3d3d] terminal:border-[#00ff00]/30 bg-white dark:bg-[#252525] terminal:bg-[#0a0a0a] p-8 sm:p-10 shadow-xl">
+            <div className="flex flex-col items-center gap-4">
+              <Loader2 className="size-8 sm:size-10 text-[#ef4444] terminal:text-[#00ff00] animate-spin" />
+              <p className="text-[#333333] dark:text-white terminal:text-[#00ff00] text-base sm:text-lg font-semibold">
+                Sending your message...
+              </p>
+              <p className="text-[#666666] dark:text-[#a0a0a0] terminal:text-[#00ff00]/80 text-sm">
+                Please wait while we process your email.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
       <section className="mb-8 sm:mb-12 animate-slide-in-left">
         <h2 className="text-[#333333] dark:text-white terminal:text-[#00ff00] text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 sm:mb-8 relative inline-block">
           Contact

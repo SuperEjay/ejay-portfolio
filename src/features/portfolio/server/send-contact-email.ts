@@ -103,6 +103,13 @@ export const sendContactEmail = createServerFn({ method: 'POST' })
 
     const replyTo = sanitizeHeaderValue(data.email)
     const fullName = sanitizeHeaderValue(data.fullName)
+    const contactEmail = sanitizeHeaderValue(data.email)
+
+    // Format the From field to show the contact's information
+    // Gmail API requires the From address to match the authenticated account,
+    // so we use the authenticated email but include the contact's info in the display name
+    // The Reply-To header is set to the contact's email so replies go directly to them
+    const fromField = `"${fullName} <${contactEmail}>" <${fromEmail}>`
 
     const text = [
       `New inquiry from your portfolio contact form.`,
@@ -115,7 +122,7 @@ export const sendContactEmail = createServerFn({ method: 'POST' })
       ``,
     ].join('\n')
 
-    const rawMessage = encodeMessage(to, fromEmail, subject, text, replyTo)
+    const rawMessage = encodeMessage(to, fromField, subject, text, replyTo)
 
     await gmail.users.messages.send({
       userId: 'me',

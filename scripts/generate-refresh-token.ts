@@ -26,8 +26,6 @@ function loadEnvFile(): EnvFile {
   const envPath = join(process.cwd(), '.env')
   const env: EnvFile = {}
 
-  console.log(env)
-
   if (existsSync(envPath)) {
     const content = readFileSync(envPath, 'utf-8')
     const lines = content.split('\n')
@@ -169,7 +167,8 @@ async function main() {
     console.log('   2. Select your project (or create a new one)')
     console.log('   3. Navigate to: APIs & Services > Credentials')
     console.log('   4. Click "Create Credentials" > "OAuth client ID"')
-    console.log('   5. Application type: "Desktop app" (or "Web application")')
+    console.log('   5. ⚠️  Application type: MUST be "Desktop app" (NOT "Web application")')
+    console.log('      This script uses a redirect URI that only works with Desktop app type')
     console.log('   6. Name: "Portfolio Contact Form"')
     console.log('   7. Click "Create"')
     console.log('   8. Copy the Client ID and Client Secret\n')
@@ -274,9 +273,12 @@ async function main() {
   console.log(`\n   ${authUrl}\n`)
   console.log('2. Sign in with your Google account')
   console.log('3. Grant the necessary permissions')
-  console.log('4. Copy the authorization code from the page')
+  console.log('4. After granting permissions, you will see a page with:')
+  console.log('   "Please copy this code, switch to your application and paste it there:"')
+  console.log('   📝 The authorization code will be displayed in a box on that page')
   console.log('   ⚠️  IMPORTANT: The code expires quickly (within minutes)')
-  console.log('   ⚠️  IMPORTANT: Each code can only be used ONCE\n')
+  console.log('   ⚠️  IMPORTANT: Each code can only be used ONCE')
+  console.log('   ⚠️  IMPORTANT: Copy the ENTIRE code (it\'s usually a long string)\n')
 
   // Get authorization code from user
   const code = await readInput('Enter the authorization code: ')
@@ -427,24 +429,30 @@ async function main() {
           "   6. Make sure you're using credentials from the correct project",
         )
         console.error("   7. If client doesn't exist, create a new one:")
-        console.error('      - Application type: "Desktop app"')
+        console.error('      - ⚠️  Application type: MUST be "Desktop app" (NOT "Web application")')
         console.error('      - Name: "Portfolio Contact Form"')
         console.error(
           '   8. Run this script again with the correct credentials',
         )
-      } else if (errorMessage.includes('redirect_uri_mismatch')) {
-        console.error('\n🔴 Redirect URI Mismatch Error')
-        console.error("   The redirect URI in your OAuth client doesn't match.")
-        console.error('\n💡 Fix in Google Cloud Console:')
-        console.error('   1. Go to: APIs & Services > Credentials')
-        console.error('   2. Click on your OAuth 2.0 Client ID')
-        console.error('   3. For "Desktop app" type, redirect URI should be:')
-        console.error('      urn:ietf:wg:oauth:2.0:oob')
-        console.error(
-          '   4. For "Web application" type, add to "Authorized redirect URIs":',
-        )
-        console.error('      urn:ietf:wg:oauth:2.0:oob')
-        console.error('   5. Save and try again')
+      } else if (
+        errorMessage.includes('redirect_uri_mismatch') ||
+        errorMessage.includes('can only be used by a client id for native application') ||
+        errorMessage.includes('not allowed for the web client type')
+      ) {
+        console.error('\n🔴 Redirect URI / Client Type Mismatch Error')
+        console.error("   The redirect URI 'urn:ietf:wg:oauth:2.0:oob' can ONLY be used")
+        console.error('   with a "Desktop app" (native application) OAuth client type.')
+        console.error('   It CANNOT be used with a "Web application" client type.')
+        console.error('\n💡 Solution: Create a NEW "Desktop app" OAuth client')
+        console.error('   1. Go to: https://console.cloud.google.com/apis/credentials')
+        console.error('   2. Click "Create Credentials" > "OAuth client ID"')
+        console.error('   3. ⚠️  Application type: Select "Desktop app" (NOT "Web application")')
+        console.error('   4. Name: "Portfolio Contact Form" (or any name you prefer)')
+        console.error('   5. Click "Create"')
+        console.error('   6. Copy the NEW Client ID and Client Secret')
+        console.error('   7. Run this script again with the Desktop app credentials')
+        console.error('\n📝 Note: You can have both Web and Desktop app clients in the same project.')
+        console.error('   Just make sure to use the Desktop app credentials for this script.')
       } else {
         console.error(`   ${error.message}`)
       }
