@@ -12,6 +12,7 @@ import {
 
 import { AspectRatio } from '@/components/ui/aspect-ratio'
 import { Badge } from '@/components/ui/badge'
+import ThemeToggle from '@/components/theme-toggle'
 
 interface ContactItemProps {
   icon: React.ReactNode
@@ -64,7 +65,7 @@ export default function PortfolioSidebar() {
       {/* Profile Section - Always visible */}
       <div className="flex flex-col sm:flex-col lg:flex-col gap-4 sm:gap-[25px] w-full items-center">
         {/* Mobile: Horizontal layout, Desktop: Vertical */}
-        <div className="flex lg:flex-col items-center gap-4 lg:gap-[25px] w-full">
+        <div className="flex lg:flex-col items-center gap-4 lg:gap-[25px] w-full relative">
           <div className="w-[80px] sm:w-[120px] lg:w-[200px] shrink-0">
             <AspectRatio
               ratio={1}
@@ -77,7 +78,7 @@ export default function PortfolioSidebar() {
               />
             </AspectRatio>
           </div>
-          <div className="flex flex-col gap-2 lg:items-center">
+          <div className="flex flex-col gap-2 lg:items-center flex-1">
             <p className="text-[#333333] dark:text-white font-bold text-base sm:text-lg lg:text-[18px] lg:text-center">
               Earnest John Gungon
             </p>
@@ -87,6 +88,10 @@ export default function PortfolioSidebar() {
             >
               Software Engineer
             </Badge>
+          </div>
+          {/* Theme Toggle - Only visible on small screens */}
+          <div className="absolute top-0 right-0 lg:hidden">
+            <ThemeToggle />
           </div>
         </div>
 

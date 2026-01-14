@@ -15,21 +15,18 @@ export default function Portfolio() {
           </div>
 
           {/* Main Content */}
-          <div className="w-full min-h-screen bg-white dark:bg-[#1e1e1e] rounded-lg border border-[#e0e0e0] dark:border-[#3d3d3d] p-4 sm:p-6 lg:p-8 pt-6 sm:pt-8 lg:pt-12 transition-colors relative">
+          <div className="w-full min-h-screen bg-white dark:bg-[#1e1e1e] rounded-lg border border-[#e0e0e0] dark:border-[#3d3d3d] p-4 sm:p-6 lg:p-8 pt-4 sm:pt-8 lg:pt-12 pb-24 sm:pb-6 lg:pb-8 transition-colors relative">
             {/* Navigation - Hidden on mobile, visible on larger screens */}
             <div className="hidden sm:block absolute -top-4 sm:-top-5 lg:-top-6 right-4 sm:right-6 lg:right-8 z-10">
               <PortfolioNav />
             </div>
 
-            {/* Mobile Navigation - Bottom fixed */}
-            <div className="sm:hidden fixed bottom-0 left-0 right-0 z-50">
-              <PortfolioNav isMobile />
-            </div>
-
             <PortfolioContent />
+          </div>
 
-            {/* Spacer for mobile bottom nav */}
-            <div className="h-20 sm:hidden" />
+          {/* Mobile Navigation - Bottom fixed, centered */}
+          <div className="sm:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50">
+            <PortfolioNav isMobile />
           </div>
         </div>
       </div>

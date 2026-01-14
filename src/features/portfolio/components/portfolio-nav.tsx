@@ -1,5 +1,4 @@
 import { Link, useLocation } from '@tanstack/react-router'
-import { Briefcase, FileText, Mail, User } from 'lucide-react'
 
 import ThemeToggle from '@/components/theme-toggle'
 
@@ -10,35 +9,32 @@ interface PortfolioNavProps {
 export default function PortfolioNav({ isMobile = false }: PortfolioNavProps) {
   const location = useLocation()
   const navItems = [
-    { label: 'About', href: '/portfolio', icon: User },
-    { label: 'Resume', href: '/portfolio/resume', icon: FileText },
-    { label: 'Portfolio', href: '/portfolio/portfolio', icon: Briefcase },
-    { label: 'Contact', href: '/portfolio/contact', icon: Mail },
+    { label: 'About', href: '/portfolio' },
+    { label: 'Resume', href: '/portfolio/resume' },
+    { label: 'Portfolio', href: '/portfolio/portfolio' },
+    { label: 'Contact', href: '/portfolio/contact' },
   ]
 
   // Mobile bottom navigation
   if (isMobile) {
     return (
-      <nav className="flex items-center justify-around bg-white dark:bg-[#252525] border-t border-[#e0e0e0] dark:border-[#3d3d3d] px-2 py-3 safe-area-pb transition-colors">
+      <nav className="flex items-center justify-center gap-4 bg-white/70 dark:bg-[#252525]/70 backdrop-blur-2xl rounded-2xl px-6 py-3.5 shadow-2xl border border-[#e0e0e0]/50 dark:border-[#3d3d3d]/30 safe-area-pb transition-colors supports-backdrop-filter:bg-white/60 dark:supports-backdrop-filter:bg-[#252525]/60">
         {navItems.map((item) => {
           const isActive = location.pathname === item.href
-          const Icon = item.icon
           return (
             <Link
               key={item.href}
               to={item.href}
-              className={`flex flex-col items-center gap-1 px-3 py-1 transition-colors ${
+              className={`px-3 py-1.5 text-sm font-medium rounded-lg transition-all ${
                 isActive
-                  ? 'text-[#ef4444]'
-                  : 'text-[#666666] dark:text-[#a0a0a0]'
+                  ? 'text-white bg-[#ef4444]'
+                  : 'text-[#666666] dark:text-[#a0a0a0] hover:bg-[#f0f0f0] dark:hover:bg-[#3d3d3d]'
               }`}
             >
-              <Icon className="size-5" />
-              <span className="text-[10px] font-medium">{item.label}</span>
+              {item.label}
             </Link>
           )
         })}
-        <ThemeToggle />
       </nav>
     )
   }
