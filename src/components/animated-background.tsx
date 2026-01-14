@@ -30,16 +30,16 @@ function generateStars(count: number) {
 }
 
 const terminalCommands = [
-  'npm run dev',
-  'git status',
-  'ls -la',
-  'cat package.json',
-  'npm install',
-  'git commit -m "feat: update"',
-  'echo "Hello World"',
-  'cd src',
-  'pwd',
-  'git log --oneline',
+  'bun run dev',
+  'php artisan serve',
+  'bun install',
+  'composer install',
+  'php artisan migrate',
+  'bun run build',
+  'php artisan make:controller',
+  'bun run type-check',
+  'php artisan route:list',
+  'bun test',
 ]
 
 function TerminalLine({
@@ -63,7 +63,7 @@ function TerminalLine({
         opacity: 0,
       }}
     >
-      <span className="text-[#00ff00]/40">user@portfolio</span>
+      <span className="text-[#00ff00]/40">superjay@dev</span>
       <span className="text-[#00ff00]/60">:</span>
       <span className="text-[#00ff00]/40">~</span>
       <span className="text-[#00ff00]/60">$</span>{' '}
