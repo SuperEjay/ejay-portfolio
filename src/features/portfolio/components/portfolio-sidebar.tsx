@@ -31,7 +31,10 @@ function ContactItem({ icon, label, value, href }: ContactItemProps) {
         <span className="text-[#666666] dark:text-[#a0a0a0] group-hover:text-[#ef4444] text-xs uppercase tracking-wide font-medium transition-colors">
           {label}
         </span>
-        <span className="text-[#333333] dark:text-white text-xs sm:text-sm truncate" title={value}>
+        <span
+          className="text-[#333333] dark:text-white text-xs sm:text-sm truncate"
+          title={value}
+        >
           {value}
         </span>
       </div>
@@ -110,7 +113,9 @@ export default function PortfolioSidebar() {
       {/* Collapsible section on mobile, always visible on desktop */}
       <div
         className={`flex flex-col gap-4 sm:gap-6 overflow-hidden transition-all duration-300 ${
-          isExpanded ? 'max-h-[500px] opacity-100' : 'max-h-0 lg:max-h-none opacity-0 lg:opacity-100'
+          isExpanded
+            ? 'max-h-[500px] opacity-100'
+            : 'max-h-0 lg:max-h-none opacity-0 lg:opacity-100'
         }`}
       >
         <div className="w-full h-px bg-[#e0e0e0] dark:bg-[#3d3d3d]" />

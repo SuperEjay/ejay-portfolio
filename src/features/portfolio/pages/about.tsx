@@ -1,4 +1,4 @@
-import { Camera, Code, PenTool, Quote, Smartphone } from 'lucide-react'
+import { Camera, Code, PenTool, Smartphone } from 'lucide-react'
 
 interface ServiceCardProps {
   icon: React.ReactNode
@@ -54,7 +54,7 @@ function TestimonialCard({ name, text, avatar }: TestimonialCardProps) {
   )
 }
 
-export default function PortfolioContent() {
+export default function AboutPage() {
   return (
     <div
       style={{ fontFamily: "'Poppins', sans-serif" }}

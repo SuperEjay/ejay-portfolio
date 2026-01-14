@@ -1,9 +1,33 @@
+import { useState } from 'react'
+
+import { AboutPage, ContactPage, PortfolioPage, ResumePage } from '../pages'
+import { usePageHead } from '../hooks/use-page-head'
 import { PortfolioLayout } from './layout'
 import PortfolioNav from './portfolio-nav'
 import PortfolioSidebar from './portfolio-sidebar'
-import PortfolioContent from './portfolio-content'
+import type { PageType } from '../types'
 
 export default function Portfolio() {
+  const [activePage, setActivePage] = useState<PageType>('about')
+
+  // Update head content based on active page
+  usePageHead(activePage)
+
+  const renderPage = () => {
+    switch (activePage) {
+      case 'about':
+        return <AboutPage />
+      case 'resume':
+        return <ResumePage />
+      case 'portfolio':
+        return <PortfolioPage />
+      case 'contact':
+        return <ContactPage />
+      default:
+        return <AboutPage />
+    }
+  }
+
   return (
     <PortfolioLayout>
       <div className="max-w-[1300px] mx-auto w-full">
@@ -18,15 +42,22 @@ export default function Portfolio() {
           <div className="w-full min-h-screen bg-white dark:bg-[#1e1e1e] rounded-lg border border-[#e0e0e0] dark:border-[#3d3d3d] p-4 sm:p-6 lg:p-8 pt-4 sm:pt-8 lg:pt-12 pb-24 sm:pb-6 lg:pb-8 transition-colors relative">
             {/* Navigation - Hidden on mobile, visible on larger screens */}
             <div className="hidden sm:block absolute -top-4 sm:-top-5 lg:-top-6 right-4 sm:right-6 lg:right-8 z-10">
-              <PortfolioNav />
+              <PortfolioNav
+                activePage={activePage}
+                onNavigate={setActivePage}
+              />
             </div>
 
-            <PortfolioContent />
+            {renderPage()}
           </div>
 
           {/* Mobile Navigation - Bottom fixed, centered */}
           <div className="sm:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50">
-            <PortfolioNav isMobile />
+            <PortfolioNav
+              isMobile
+              activePage={activePage}
+              onNavigate={setActivePage}
+            />
           </div>
         </div>
       </div>
