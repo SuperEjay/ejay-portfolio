@@ -9,6 +9,7 @@
       "skills": [
         "Laravel",
         "React",
+        "Vue",
         "NextJS",
         "Inertia JS",
         "TypeScript",
@@ -16,12 +17,17 @@
         "React Native",
         "Ionic",
         "jQuery",
-        "Codeigniter"
+        "Codeigniter",
+        "Tanstack Query",
+        "Tanstack Router",
+        "Tanstack Query",
+        "Tanstack Start",
+        "Shadcn"
       ]
     },
     {
       "name": "Databases Tools",
-      "skills": ["MySQL", "Postgresql", "SupaBase"]
+      "skills": ["MySQL", "Postgresql", "SupaBase", "SQLite", "Prisma"]
     },
     {
       "name": "Other Tools",
