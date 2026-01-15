@@ -1,26 +1,117 @@
-[
-  {
-    "title": "Deja Bros | Point of Sale",
-    "type": "Personal Project",
-    "description": "Developed an order management app that streamlines sales tracking and simplifies product management for the business",
-    "date": "12/2025",
-    "link": "https://pos-five-beige.vercel.app/pos",
-    "image": "/assets/images/projects/deja.png"
-  },
-  {
-    "title": "Pawispal | Your personal AI Gym Trainer",
-    "type": "Personal Project",
-    "description": "Built a fitness app designed to make it easier for users to manage their time and stay consistent with their fitness goals",
-    "date": "07/2025",
-    "link": "https://pawispal.vercel.app/",
-    "image": "/assets/images/projects/pawis.png"
-  },
-  {
-    "title": "Euro App | Warranty Management System",
-    "type": "Personal Project",
-    "description": "Engineered a web application that enhances customer convenience by providing extended warranty benefits for purchased items",
-    "date": "09/2024",
-    "link": "https://warranty.eurooglobal.com/warranty-registration",
-    "image": "/assets/images/projects/euroo.png"
-  }
-]
+{
+  "personal": [
+    {
+      "title": "Deja Bros | Point of Sale",
+      "type": "Personal Project",
+      "description": "Developed an order management app that streamlines sales tracking and simplifies product management for the business",
+      "date": "12/2025",
+      "link": "https://pos-five-beige.vercel.app/pos",
+      "image": "/assets/images/projects/deja.png"
+    },
+    {
+      "title": "Pawispal | Your personal AI Gym Trainer",
+      "type": "Personal Project",
+      "description": "Built a fitness app designed to make it easier for users to manage their time and stay consistent with their fitness goals",
+      "date": "07/2025",
+      "link": "https://pawispal.vercel.app/",
+      "image": "/assets/images/projects/pawis.png"
+    },
+    {
+      "title": "Euro App | Warranty Management System",
+      "type": "Personal Project",
+      "description": "Engineered a web application that enhances customer convenience by providing extended warranty benefits for purchased items",
+      "date": "09/2024",
+      "link": "https://warranty.eurooglobal.com/warranty-registration",
+      "image": "/assets/images/projects/euroo.png"
+    }
+  ],
+  "company": [
+    {
+      "projectName": "Polland Inventory Management System",
+      "company": "Polland",
+      "role": "Full Stack / Lead Developer",
+      "tech": "Laravel, React, MySQL",
+      "contribution": [
+        "Led the end-to-end development of an inventory system built from the ground up",
+        "Standardized and automated manual processes through close collaboration with stakeholders",
+        "Worked with the team to deliver a scalable and maintainable solution"
+      ]
+    },
+    {
+      "projectName": "Alphera ERP System",
+      "company": "Alphera Marine Services Inc.",
+      "role": "Full Stack / Lead Developer",
+      "tech": "Laravel, Inertia JS, React, MySQL",
+      "contribution": [
+        "Led system development while collaborating directly with the client on requirements",
+        "Translated business needs into clear technical solutions with the team",
+        "Managed deployment and ensured stable, efficient production operations"
+      ]
+    },
+    {
+      "projectName": "DutyFree Philippines – E-Commerce Platform",
+      "company": "DutyFree Philippines",
+      "role": "Technical Lead / Full Stack Developer",
+      "tech": "Laravel, React, MySQL, TanStack, TailwindCSS",
+      "contribution": [
+        "Led a cross-functional team in building a large-scale e-commerce platform",
+        "Worked closely with stakeholders to align business requirements with technical execution",
+        "Oversaw planning, estimation, and on-time delivery of project milestones"
+      ]
+    },
+    {
+      "projectName": "The HeartyGrubPH – E-Commerce Platform",
+      "company": "The HeartyGrubPH",
+      "role": "Technical Lead / Full Stack Developer",
+      "tech": "Laravel Blade, MySQL, jQuery",
+      "contribution": [
+        "Developed the platform end-to-end based on direct client collaboration",
+        "Translated client vision into functional features and system flows",
+        "Ensured smooth implementation aligned with business expectations"
+      ]
+    },
+    {
+      "projectName": "KingPanda Car Sales Platform",
+      "company": "KingPanda",
+      "role": "Technical Lead",
+      "tech": "Laravel, Inertia JS, React, PostgreSQL, TailwindCSS",
+      "contribution": [
+        "Defined system architecture and guided the development team",
+        "Coordinated closely with stakeholders to meet technical and business goals",
+        "Led delivery, estimation, and quality assurance across the project lifecycle"
+      ]
+    },
+    {
+      "projectName": "GoWork Platform",
+      "company": "Robinsons Land Corporation",
+      "role": "Project Manager / Technical Lead",
+      "contribution": [
+        "Bridged client requirements and technical execution with the development team",
+        "Managed timelines, scope, and team coordination",
+        "Ensured high-quality delivery aligned with business objectives"
+      ]
+    },
+    {
+      "projectName": "PasaDax",
+      "company": "Government",
+      "role": "Technical Lead / Full Stack Developer",
+      "tech": "Laravel, React, React Native, PostgreSQL",
+      "contribution": [
+        "Led architecture and full-stack development of a government platform",
+        "Collaborated with cross-disciplinary teams to deliver a production-ready system",
+        "Ensured timely delivery while meeting public sector requirements"
+      ]
+    },
+    {
+      "projectName": "TAO – Trabaho at Oportunidad",
+      "company": "Government",
+      "role": "Technical Lead / Full Stack Developer",
+      "tech": "Laravel, React, React Native, PostgreSQL",
+      "contribution": [
+        "Designed and led the implementation of a nationwide digital platform",
+        "Worked closely with teams and stakeholders to align technical solutions with social impact goals",
+        "Delivered scalable and maintainable systems under strict timelines"
+      ]
+    }
+  ]
+}
