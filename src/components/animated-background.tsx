@@ -174,17 +174,17 @@ export default function AnimatedBackground() {
         </div>
       )}
 
-      {/* Sun/Moon - hidden for terminal */}
+      {/* Sun - hidden for terminal, positioned on left side */}
       {!isTerminal && (
         <div
           className={`absolute transition-all duration-1500 ease-in-out ${
             isDark
-              ? 'bottom-[-100px] right-[15%] opacity-0'
-              : 'bottom-[20%] right-[15%] opacity-100'
+              ? 'bottom-[-100px] left-[5%] sm:left-[8%] opacity-0'
+              : 'bottom-[15%] sm:bottom-[20%] left-[5%] sm:left-[8%] opacity-100'
           }`}
         >
           <div
-            className={`w-20 h-20 rounded-full transition-all duration-1500 ${
+            className={`w-16 h-16 sm:w-20 sm:h-20 rounded-full transition-all duration-1500 ${
               isDark
                 ? 'bg-gradient-to-br from-[#ffd700] to-[#ff6b35] shadow-[0_0_60px_rgba(255,107,53,0.8)]'
                 : 'bg-gradient-to-br from-[#fff5cc] to-[#ffdd00] shadow-[0_0_80px_rgba(255,221,0,0.6)]'
@@ -193,21 +193,21 @@ export default function AnimatedBackground() {
         </div>
       )}
 
-      {/* Moon for dark mode - hidden for terminal */}
+      {/* Moon for dark mode - hidden for terminal, positioned on left side */}
       {!isTerminal && (
         <div
           className={`absolute transition-all duration-1500 ease-in-out ${
             isDark
-              ? 'top-[10%] right-[20%] opacity-100'
-              : 'top-[-100px] right-[20%] opacity-0'
+              ? 'top-[8%] sm:top-[10%] left-[8%] sm:left-[12%] opacity-100'
+              : 'top-[-100px] left-[8%] sm:left-[12%] opacity-0'
           }`}
         >
-          <div className="relative w-16 h-16">
+          <div className="relative w-12 h-12 sm:w-16 sm:h-16">
             <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#f5f5f5] to-[#d0d0d0] shadow-[0_0_40px_rgba(255,255,255,0.3)]" />
             {/* Moon craters */}
-            <div className="absolute top-3 left-4 w-3 h-3 rounded-full bg-[#c0c0c0]/50" />
-            <div className="absolute top-7 left-8 w-2 h-2 rounded-full bg-[#c0c0c0]/40" />
-            <div className="absolute top-5 left-2 w-2 h-2 rounded-full bg-[#c0c0c0]/30" />
+            <div className="absolute top-2 sm:top-3 left-3 sm:left-4 w-2 sm:w-3 h-2 sm:h-3 rounded-full bg-[#c0c0c0]/50" />
+            <div className="absolute top-5 sm:top-7 left-6 sm:left-8 w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-[#c0c0c0]/40" />
+            <div className="absolute top-4 sm:top-5 left-1.5 sm:left-2 w-1.5 sm:w-2 h-1.5 sm:h-2 rounded-full bg-[#c0c0c0]/30" />
           </div>
         </div>
       )}
@@ -225,34 +225,34 @@ export default function AnimatedBackground() {
         </div>
       )}
 
-      {/* Shooting star (only in dark mode) - hidden for terminal */}
+      {/* Shooting star (only in dark mode) - hidden for terminal, on left side */}
       {!isTerminal && isDark && (
-        <div className="absolute top-[20%] left-[10%] animate-shooting-star">
+        <div className="absolute top-[20%] left-[3%] sm:left-[5%] animate-shooting-star">
           <div className="w-1 h-1 bg-white rounded-full shadow-[0_0_6px_2px_rgba(255,255,255,0.8)]">
-            <div className="absolute w-20 h-[1px] bg-gradient-to-r from-white/80 to-transparent -translate-x-full" />
+            <div className="absolute w-16 sm:w-20 h-[1px] bg-gradient-to-r from-white/80 to-transparent -translate-x-full" />
           </div>
         </div>
       )}
 
-      {/* Clouds for light mode - hidden for terminal */}
+      {/* Clouds for light mode - hidden for terminal, positioned on left side */}
       {!isTerminal && (
         <div
           className={`absolute transition-opacity duration-1500 ${
             isDark ? 'opacity-0' : 'opacity-100'
           }`}
         >
-          <div className="absolute top-[15%] left-[10%] animate-float-slow">
+          <div className="absolute top-[15%] left-[2%] sm:left-[5%] animate-float-slow">
             <div className="flex">
-              <div className="w-16 h-8 bg-white/80 rounded-full blur-sm" />
-              <div className="w-12 h-10 bg-white/80 rounded-full blur-sm -ml-6 -mt-2" />
-              <div className="w-14 h-8 bg-white/80 rounded-full blur-sm -ml-4" />
+              <div className="w-12 sm:w-16 h-6 sm:h-8 bg-white/80 rounded-full blur-sm" />
+              <div className="w-10 sm:w-12 h-8 sm:h-10 bg-white/80 rounded-full blur-sm -ml-4 sm:-ml-6 -mt-1 sm:-mt-2" />
+              <div className="w-10 sm:w-14 h-6 sm:h-8 bg-white/80 rounded-full blur-sm -ml-3 sm:-ml-4" />
             </div>
           </div>
-          <div className="absolute top-[25%] right-[25%] animate-float-slower">
+          <div className="absolute top-[30%] left-[1%] sm:left-[3%] animate-float-slower">
             <div className="flex">
-              <div className="w-12 h-6 bg-white/70 rounded-full blur-sm" />
-              <div className="w-10 h-8 bg-white/70 rounded-full blur-sm -ml-4 -mt-2" />
-              <div className="w-10 h-6 bg-white/70 rounded-full blur-sm -ml-3" />
+              <div className="w-10 sm:w-12 h-5 sm:h-6 bg-white/70 rounded-full blur-sm" />
+              <div className="w-8 sm:w-10 h-6 sm:h-8 bg-white/70 rounded-full blur-sm -ml-3 sm:-ml-4 -mt-1 sm:-mt-2" />
+              <div className="w-8 sm:w-10 h-5 sm:h-6 bg-white/70 rounded-full blur-sm -ml-2 sm:-ml-3" />
             </div>
           </div>
         </div>
