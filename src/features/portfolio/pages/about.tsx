@@ -48,10 +48,35 @@ function TestimonialItem({
   image,
   onClick,
 }: TestimonialItemProps) {
+  const dragStartRef = useRef<{ x: number; y: number } | null>(null)
+
+  const handleMouseDown = (e: React.MouseEvent<HTMLButtonElement>) => {
+    // Store initial mouse position for click detection
+    dragStartRef.current = { x: e.clientX, y: e.clientY }
+    // Stop propagation to prevent container drag handler
+    e.stopPropagation()
+  }
+
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    // Only trigger onClick if it's not a drag operation
+    // Check if the mouse moved significantly (more than 5px)
+    if (dragStartRef.current) {
+      const deltaX = Math.abs(e.clientX - dragStartRef.current.x)
+      const deltaY = Math.abs(e.clientY - dragStartRef.current.y)
+      if (deltaX > 5 || deltaY > 5) {
+        dragStartRef.current = null
+        return
+      }
+    }
+    onClick()
+    dragStartRef.current = null
+  }
+
   return (
     <button
-      onClick={onClick}
-      className="flex flex-col gap-3 p-5 sm:p-6 rounded-lg bg-white/60 dark:bg-[#252525]/60 terminal:bg-[#0a0a0a]/60 backdrop-blur-md border border-[#e0e0e0]/60 dark:border-[#3d3d3d]/60 terminal:border-[#00ff00]/30 hover:border-[#ef4444]/50 terminal:hover:border-[#00ff00]/50 transition-all duration-300 shadow-lg cursor-pointer group text-left w-[280px] sm:w-[300px] shrink-0 snap-start"
+      onClick={handleClick}
+      onMouseDown={handleMouseDown}
+      className="flex flex-col gap-3 p-5 sm:p-6 rounded-lg bg-white/60 dark:bg-[#252525]/60 terminal:bg-[#0a0a0a]/60 backdrop-blur-md border border-[#e0e0e0]/60 dark:border-[#3d3d3d]/60 terminal:border-[#00ff00]/30 hover:border-[#ef4444]/50 terminal:hover:border-[#00ff00]/50 transition-all duration-300 shadow-lg cursor-pointer group text-left w-[280px] sm:w-[300px] shrink-0 snap-start select-none"
     >
       <div className="flex items-start gap-3">
         {/* Square avatar container with rounded corners */}
@@ -159,7 +184,49 @@ export default function AboutPage() {
     image?: string
   } | null>(null)
   const scrollContainerRef = useRef<HTMLDivElement>(null)
+  const scrollbarTrackRef = useRef<HTMLDivElement>(null)
+  const scrollbarThumbRef = useRef<HTMLDivElement>(null)
   const [scrollProgress, setScrollProgress] = useState(0)
+  const [isDragging, setIsDragging] = useState(false)
+  const [isDraggingScrollbar, setIsDraggingScrollbar] = useState(false)
+  const [startX, setStartX] = useState(0)
+  const [scrollLeft, setScrollLeft] = useState(0)
+  const dragStartPosRef = useRef<{ x: number; scrollLeft: number } | null>(null)
+  const scrollbarDragStartRef = useRef<{ x: number; scrollLeft: number } | null>(null)
+
+  const [scrollbarDimensions, setScrollbarDimensions] = useState({
+    thumbWidth: 0,
+    thumbLeft: 0,
+    trackWidth: 0,
+  })
+
+  // Calculate scrollbar dimensions
+  const updateScrollbarDimensions = () => {
+    const container = scrollContainerRef.current
+    if (!container) {
+      setScrollbarDimensions({ thumbWidth: 0, thumbLeft: 0, trackWidth: 0 })
+      return
+    }
+
+    const { scrollWidth, clientWidth, scrollLeft } = container
+    const trackWidth = scrollbarTrackRef.current?.clientWidth || container.clientWidth
+    const scrollableWidth = scrollWidth - clientWidth
+
+    if (scrollableWidth <= 0) {
+      setScrollbarDimensions({
+        thumbWidth: trackWidth,
+        thumbLeft: 0,
+        trackWidth,
+      })
+      return
+    }
+
+    const thumbWidth = Math.max((clientWidth / scrollWidth) * trackWidth, 40) // Minimum 40px
+    const maxThumbLeft = trackWidth - thumbWidth
+    const thumbLeft = (scrollLeft / scrollableWidth) * maxThumbLeft
+
+    setScrollbarDimensions({ thumbWidth, thumbLeft, trackWidth })
+  }
 
   useEffect(() => {
     const container = scrollContainerRef.current
@@ -170,15 +237,179 @@ export default function AboutPage() {
       const maxScroll = scrollWidth - clientWidth
       const progress = maxScroll > 0 ? scrollLeft / maxScroll : 0
       setScrollProgress(progress)
+      updateScrollbarDimensions()
     }
 
+    // Initial calculation
+    updateScrollbarDimensions()
+
+    // Update on scroll
     container.addEventListener('scroll', updateScrollProgress)
-    updateScrollProgress() // Initial calculation
+
+    // Update on resize
+    const resizeObserver = new ResizeObserver(() => {
+      updateScrollbarDimensions()
+    })
+    resizeObserver.observe(container)
+    if (scrollbarTrackRef.current) {
+      resizeObserver.observe(scrollbarTrackRef.current)
+    }
 
     return () => {
       container.removeEventListener('scroll', updateScrollProgress)
+      resizeObserver.disconnect()
     }
   }, [])
+
+  // Draggable scroll handlers
+  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    // Don't start dragging if clicking on a button
+    if ((e.target as HTMLElement).closest('button')) {
+      return
+    }
+
+    const container = scrollContainerRef.current
+    if (!container) return
+
+    setIsDragging(true)
+    setStartX(e.pageX - container.offsetLeft)
+    setScrollLeft(container.scrollLeft)
+    dragStartPosRef.current = {
+      x: e.pageX - container.offsetLeft,
+      scrollLeft: container.scrollLeft,
+    }
+    container.style.cursor = 'grabbing'
+    container.style.userSelect = 'none'
+  }
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isDragging || !dragStartPosRef.current) return
+    e.preventDefault()
+
+    const container = scrollContainerRef.current
+    if (!container) return
+
+    const x = e.pageX - container.offsetLeft
+    const walk = (x - dragStartPosRef.current.x) * 2 // Scroll speed multiplier
+    container.scrollLeft = dragStartPosRef.current.scrollLeft - walk
+  }
+
+  const handleMouseUp = () => {
+    setIsDragging(false)
+    dragStartPosRef.current = null
+    const container = scrollContainerRef.current
+    if (container) {
+      container.style.cursor = 'grab'
+      container.style.userSelect = ''
+    }
+  }
+
+  const handleMouseLeave = () => {
+    if (isDragging) {
+      handleMouseUp()
+    }
+  }
+
+  // Touch handlers for mobile
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    const container = scrollContainerRef.current
+    if (!container) return
+
+    setIsDragging(true)
+    const touch = e.touches[0]
+    setStartX(touch.pageX - container.offsetLeft)
+    setScrollLeft(container.scrollLeft)
+    dragStartPosRef.current = {
+      x: touch.pageX - container.offsetLeft,
+      scrollLeft: container.scrollLeft,
+    }
+  }
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (!isDragging || !dragStartPosRef.current) return
+
+    const container = scrollContainerRef.current
+    if (!container) return
+
+    const touch = e.touches[0]
+    const x = touch.pageX - container.offsetLeft
+    const walk = (x - dragStartPosRef.current.x) * 2
+    container.scrollLeft = dragStartPosRef.current.scrollLeft - walk
+  }
+
+  const handleTouchEnd = () => {
+    setIsDragging(false)
+    dragStartPosRef.current = null
+  }
+
+  // Scrollbar drag handlers
+  const handleScrollbarMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.preventDefault()
+    e.stopPropagation()
+
+    const container = scrollContainerRef.current
+    const track = scrollbarTrackRef.current
+    if (!container || !track) return
+
+    const rect = track.getBoundingClientRect()
+    const clickX = e.clientX - rect.left
+    const { thumbWidth, thumbLeft } = scrollbarDimensions
+
+    // Check if clicking on thumb or track
+    if (clickX >= thumbLeft && clickX <= thumbLeft + thumbWidth) {
+      // Clicking on thumb - start dragging
+      setIsDraggingScrollbar(true)
+      scrollbarDragStartRef.current = {
+        x: e.clientX,
+        scrollLeft: container.scrollLeft,
+      }
+    } else {
+      // Clicking on track - jump to position
+      const scrollableWidth = container.scrollWidth - container.clientWidth
+      const trackWidth = scrollbarDimensions.trackWidth || track.clientWidth
+      const newScrollLeft = (clickX / trackWidth) * scrollableWidth
+      container.scrollLeft = Math.max(0, Math.min(newScrollLeft, scrollableWidth))
+    }
+  }
+
+  const handleScrollbarMouseMove = (e: MouseEvent) => {
+    if (!isDraggingScrollbar || !scrollbarDragStartRef.current) return
+
+    const container = scrollContainerRef.current
+    const track = scrollbarTrackRef.current
+    if (!container || !track) return
+
+    const trackWidth = scrollbarDimensions.trackWidth || track.clientWidth
+    const scrollableWidth = container.scrollWidth - container.clientWidth
+    const deltaX = e.clientX - scrollbarDragStartRef.current.x
+
+    const scrollDelta = (deltaX / trackWidth) * scrollableWidth
+    const newScrollLeft = scrollbarDragStartRef.current.scrollLeft + scrollDelta
+
+    container.scrollLeft = Math.max(0, Math.min(newScrollLeft, scrollableWidth))
+  }
+
+  const handleScrollbarMouseUp = () => {
+    setIsDraggingScrollbar(false)
+    scrollbarDragStartRef.current = null
+  }
+
+  // Global mouse handlers for scrollbar dragging
+  useEffect(() => {
+    if (isDraggingScrollbar) {
+      document.addEventListener('mousemove', handleScrollbarMouseMove)
+      document.addEventListener('mouseup', handleScrollbarMouseUp)
+      document.body.style.cursor = 'grabbing'
+      document.body.style.userSelect = 'none'
+
+      return () => {
+        document.removeEventListener('mousemove', handleScrollbarMouseMove)
+        document.removeEventListener('mouseup', handleScrollbarMouseUp)
+        document.body.style.cursor = ''
+        document.body.style.userSelect = ''
+      }
+    }
+  }, [isDraggingScrollbar])
 
   return (
     <div
@@ -229,7 +460,16 @@ export default function AboutPage() {
           {/* Horizontal scrollable carousel - 2 items visible per scroll */}
           <div
             ref={scrollContainerRef}
-            className="w-full overflow-x-auto overflow-y-hidden pb-4 scrollbar-hide snap-x snap-mandatory"
+            className={`w-full overflow-x-auto overflow-y-hidden pb-4 scrollbar-hide snap-x snap-mandatory ${
+              isDragging ? 'cursor-grabbing' : 'cursor-grab'
+            } select-none`}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseLeave}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
           >
             <div className="inline-flex gap-4 sm:gap-6">
               {testimonialsData.items.map((testimonial, index) => (
@@ -244,19 +484,23 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* Scroll Progress Indicator */}
-          <div className="mt-4 h-1 w-full bg-[#e0e0e0]/50 dark:bg-[#3d3d3d]/50 terminal:bg-[#00ff00]/20 rounded-full overflow-hidden">
+          {/* Custom Draggable Scrollbar */}
+          <div
+            ref={scrollbarTrackRef}
+            className="mt-4 h-2 w-full bg-[#e0e0e0]/50 dark:bg-[#3d3d3d]/50 terminal:bg-[#00ff00]/20 rounded-full overflow-visible relative cursor-pointer"
+            onMouseDown={handleScrollbarMouseDown}
+          >
             <div
-              className="h-full bg-[#ef4444] terminal:bg-[#00ff00] transition-all duration-200 ease-out rounded-full"
+              ref={scrollbarThumbRef}
+              className={`absolute top-0 h-full bg-[#ef4444] terminal:bg-[#00ff00] rounded-full transition-all duration-200 ease-out ${
+                isDraggingScrollbar
+                  ? 'cursor-grabbing opacity-100'
+                  : 'cursor-grab hover:opacity-80'
+              }`}
               style={{
-                width: `${Math.max(
-                  scrollProgress * 100,
-                  scrollContainerRef.current &&
-                    scrollContainerRef.current.scrollWidth >
-                      scrollContainerRef.current.clientWidth
-                    ? 33
-                    : 100,
-                )}%`,
+                width: `${scrollbarDimensions.thumbWidth}px`,
+                left: `${scrollbarDimensions.thumbLeft}px`,
+                minWidth: '40px',
               }}
             />
           </div>
