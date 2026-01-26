@@ -71,6 +71,7 @@ function PersonalProjectCard({
 interface CompanyProjectCardProps {
   projectName: string
   company: string
+  client: string
   role: string
   contribution: string | string[]
   tech?: string
@@ -81,6 +82,7 @@ interface CompanyProjectCardProps {
 function CompanyProjectCard({
   projectName,
   company,
+  client,
   role,
   contribution,
   tech,
@@ -104,6 +106,11 @@ function CompanyProjectCard({
         <p className="text-[#555555] dark:text-[#b0b0b0] terminal:text-[#00ff00]/80 text-xs sm:text-sm mb-0.5">
           {company}
         </p>
+        {client && (
+          <p className="text-[#999999] dark:text-[#777777] terminal:text-[#00ff00]/60 text-xs mb-0.5">
+            Client: {client}
+          </p>
+        )}
         <p className="text-[#ef4444] terminal:text-[#00ff00] text-xs sm:text-sm font-medium mb-1 sm:mb-2">
           {role}
         </p>
@@ -248,6 +255,7 @@ export default function PortfolioPage() {
                   key={index}
                   projectName={project.projectName}
                   company={project.company}
+                  client={project.client}
                   role={project.role}
                   contribution={project.contribution}
                   tech={project.tech}

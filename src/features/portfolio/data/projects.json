@@ -28,7 +28,8 @@
   "company": [
     {
       "projectName": "Polland Inventory Management System",
-      "company": "Polland",
+      "company": "Springboard Philippines",
+      "client": "Polland",
       "role": "Full Stack / Lead Developer",
       "tech": "Laravel, React, MySQL",
       "contribution": [
@@ -39,7 +40,8 @@
     },
     {
       "projectName": "Alphera ERP System",
-      "company": "Alphera Marine Services Inc.",
+      "company": "Springboard Philippines",
+      "client": "Alphera Marine Services Inc.",
       "role": "Full Stack / Lead Developer",
       "tech": "Laravel, Inertia JS, React, MySQL",
       "contribution": [
@@ -50,7 +52,8 @@
     },
     {
       "projectName": "DutyFree Philippines – E-Commerce Platform",
-      "company": "DutyFree Philippines",
+      "company": "Springboard Philippines",
+      "client": "DutyFree Philippines",
       "role": "Technical Lead / Full Stack Developer",
       "tech": "Laravel, React, MySQL, TanStack, TailwindCSS",
       "contribution": [
@@ -61,7 +64,8 @@
     },
     {
       "projectName": "The HeartyGrubPH – E-Commerce Platform",
-      "company": "The HeartyGrubPH",
+      "company": "Springboard Philippines",
+      "client": "The HeartyGrubPH",
       "role": "Technical Lead / Full Stack Developer",
       "tech": "Laravel Blade, MySQL, jQuery",
       "contribution": [
@@ -72,7 +76,8 @@
     },
     {
       "projectName": "KingPanda Car Sales Platform",
-      "company": "KingPanda",
+      "company": "Springboard Philippines",
+      "client": "KingPanda",
       "role": "Technical Lead",
       "tech": "Laravel, Inertia JS, React, PostgreSQL, TailwindCSS",
       "contribution": [
@@ -83,7 +88,8 @@
     },
     {
       "projectName": "GoWork Platform",
-      "company": "Robinsons Land Corporation",
+      "company": "Springboard Philippines",
+      "client": "Robinsons Land Corporation",
       "role": "Project Manager / Technical Lead",
       "contribution": [
         "Bridged client requirements and technical execution with the development team",
@@ -93,7 +99,8 @@
     },
     {
       "projectName": "PasaDax",
-      "company": "Government",
+      "company": "Springboard Philippines",
+      "client": "Government",
       "role": "Technical Lead / Full Stack Developer",
       "tech": "Laravel, React, React Native, PostgreSQL",
       "contribution": [
@@ -104,7 +111,8 @@
     },
     {
       "projectName": "TAO – Trabaho at Oportunidad",
-      "company": "Government",
+      "company": "Springboard Philippines",
+      "client": "Government",
       "role": "Technical Lead / Full Stack Developer",
       "tech": "Laravel, React, React Native, PostgreSQL",
       "contribution": [
